@@ -8,8 +8,8 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "scripts": {
-    "preghpages": "gatsby build",
-    "ghpages": "gh-pages -d public",
+    "predeploy": "gatsby build",
+    "deploy": "gh-pages -d public",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
@@ -70,7 +70,7 @@
     "prettier": "2.0.4",
     "typescript": "^3.8.3"
   },
-  "homepage": "https://github.com/hwasurr/gatsby-blog",
+  "homepage": "https://github.com/hwasurr/hwasurr.github.io",
   "keywords": [
     "gatsby"
   ],
@@ -78,6 +78,6 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hwasurr/gatsby-blog.git"
+    "url": "git+https://github.com/hwasurr/hwasurr.github.io.git"
   }
 }
