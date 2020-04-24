@@ -7,15 +7,28 @@
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
+  "scripts": {
+    "preghpages": "gatsby build",
+    "ghpages": "gh-pages -d public",
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
   "dependencies": {
     "gatsby": "^2.20.25",
     "gatsby-image": "^2.3.4",
+    "gatsby-plugin-disqus": "^1.1.4",
     "gatsby-plugin-feed": "^2.4.3",
     "gatsby-plugin-google-analytics": "^2.2.4",
     "gatsby-plugin-manifest": "^2.3.5",
     "gatsby-plugin-offline": "^3.1.4",
     "gatsby-plugin-react-helmet": "^3.2.4",
     "gatsby-plugin-sharp": "^2.5.6",
+    "gatsby-plugin-typescript": "^2.3.4",
     "gatsby-plugin-typography": "^2.4.3",
     "gatsby-remark-copy-linked-files": "^2.2.3",
     "gatsby-remark-images": "^3.2.4",
@@ -25,6 +38,7 @@
     "gatsby-source-filesystem": "^2.2.4",
     "gatsby-transformer-remark": "^2.7.3",
     "gatsby-transformer-sharp": "^2.4.6",
+    "gh-pages": "^2.2.0",
     "prismjs": "^1.19.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -36,9 +50,27 @@
     "typography-theme-wordpress-2016": "^0.16.19"
   },
   "devDependencies": {
-    "prettier": "2.0.4"
+    "@types/node": "^13.13.2",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "@types/react-helmet": "^5.0.15",
+    "@types/typography": "^0.16.3",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
+    "prettier": "2.0.4",
+    "typescript": "^3.8.3"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/hwasurr/gatsby-blog",
   "keywords": [
     "gatsby"
   ],
@@ -46,15 +78,6 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
-  },
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "url": "git+https://github.com/hwasurr/gatsby-blog.git"
   }
 }
