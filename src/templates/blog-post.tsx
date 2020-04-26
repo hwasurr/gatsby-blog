@@ -51,6 +51,7 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
+            marginTop: rhythm(2),
             marginBottom: rhythm(1),
           }}
         />
