@@ -1,4 +1,13 @@
-FROM gatsbyjs/gatsby:onbuild as build
+FROM node:12-alpine as builder
+# Get the necessary build tools
+RUN apk update && apk add build-base autoconf automake libtool pkgconfig nasm
 
-FROM gatsbyjs/gatsby
-COPY --from=build /app/public /pub
+# Add the package.json file and build the node_modules folder
+WORKDIR /app
+COPY ./package*.json ./
+RUN yarn
+
+# Get a clean image with gatsby-cli and the pre-built node modules
+FROM node:12-alpine
+RUN yarn global add gatsby-cli && gatsby telemetry --disable && mkdir /save
+COPY --from=builder /app/node_modules /save/node_modules
