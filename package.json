@@ -1,12 +1,9 @@
 {
-  "name": "hwasurr-blog",
+  "name": "hwasurr-dot-io",
   "private": true,
   "description": "Hwasurr's devlog",
   "version": "0.1.0",
   "author": "Kang hwa soo <iamsupermazinga@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  },
   "scripts": {
     "deploy": "gh-pages -d public -b master",
     "prebuild": "rimraf public",
@@ -71,7 +68,7 @@
     "prettier": "2.0.4",
     "typescript": "^3.8.3"
   },
-  "homepage": "https://github.com/hwasurr/hwasurr.github.io",
+  "homepage": "https://github.com/hwasurr/hwasurr.io",
   "keywords": [
     "gatsby"
   ],
@@ -79,6 +76,6 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hwasurr/hwasurr.github.io.git"
+    "url": "git+https://github.com/hwasurr/hwasurr.io.git"
   }
 }
