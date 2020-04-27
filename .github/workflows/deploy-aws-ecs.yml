@@ -22,14 +22,13 @@ jobs:
 
       - name: Build, tag, and push image to Docker Hub
         uses: elgohr/Publish-Docker-Github-Action@2.14
-        id: build-image
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_REPOSITORY: hwasurr-dot-io
           IMAGE_TAG: ${{ github.sha }}
         with:
           name: $DOCKER_USER/$DOCKER_REPOSITORY
-          username: $DOCKER_USER
+          username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: "latest,$IMAGE_TAG"
 
