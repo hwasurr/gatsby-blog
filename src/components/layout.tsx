@@ -17,9 +17,9 @@ const Layout = ({ location, title, children }) => {
         }}
       >
         <Link
+          className="title"
           style={{
             boxShadow: 'none',
-            color: 'inherit',
           }}
           to="/"
         >
@@ -36,9 +36,9 @@ const Layout = ({ location, title, children }) => {
         }}
       >
         <Link
+          className="title"
           style={{
             boxShadow: 'none',
-            color: 'inherit',
           }}
           to="/"
         >

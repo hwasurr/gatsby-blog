@@ -19,8 +19,6 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
     title: post.frontmatter.title,
   };
 
-  console.log(data.markdownRemark);
-
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
@@ -73,7 +71,7 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
         >
           <li>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
+              <Link to={previous.fields.slug} rel="prev" className="navigation-link">
                 ←
                 {' '}
                 {previous.frontmatter.title}
@@ -82,7 +80,7 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
           </li>
           <li>
             {next && (
-              <Link to={next.fields.slug} rel="next">
+              <Link to={next.fields.slug} rel="next" className="navigation-link">
                 {next.frontmatter.title}
                 {' '}
                 →
@@ -92,7 +90,7 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
         </ul>
       </nav>
 
-      {/* <Disqus config={disqusConfig} /> */}
+      <Disqus config={disqusConfig} />
     </Layout>
   );
 };

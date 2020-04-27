@@ -1,0 +1,39 @@
+html {
+    --primary-color: #df7861;
+    --secondary-color: #ecb390;
+    --third-color: #ecdfc8;
+    --fourth-color: #fcf8e8;
+}
+blockquote {
+    border-left: 0.32813rem solid var(--primary-color);
+}
+body a {
+    color: var(--primary-color);
+    transition: all 0.25s;
+}
+body a:hover {
+    background-color: var(--secondary-color);
+    color: var(--fourth-color);
+}
+.title {
+    color: inherit;
+    background-color: inherit;
+}
+.title:hover {
+    background-color: black;
+
+}
+.social {
+    text-decoration: none;
+    box-shadow: initial;
+    border: 1px var(--secondary-color) solid;
+    border-radius: 5rem;
+    padding: 4px;
+    font-size: 12px;
+}
+.navigation-link {
+    padding: 8px 16px;
+    border: 1px var(--secondary-color) solid;
+    border-radius: 10px;
+    box-shadow: none;
+}

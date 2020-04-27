@@ -57,19 +57,24 @@ const Bio = (): JSX.Element => {
           borderRadius: '50%',
         }}
       />
-      <p>
-        Written by
-        {' '}
-        <strong>{author.name}</strong>
-        <br />
-        {author.summary}
-        {' '}
-        {social.github && (
-        <a href={`https://github.com/${social.github}`}>
-          {`https://github.com/${social.github}`}
-        </a>
-        )}
-      </p>
+      <div>
+        <p style={{ margin: '0px 0px 8px' }}>
+          Written by
+          {' '}
+          <strong>{author.name}</strong>
+          <br />
+          {author.summary}
+        </p>
+
+        <div style={{ display: 'flex' }}>
+          {social.github && (
+          <a className="social" href={`https://github.com/${social.github}`}>
+            Github
+          </a>
+          )}
+        </div>
+      </div>
+
     </div>
   );
 };

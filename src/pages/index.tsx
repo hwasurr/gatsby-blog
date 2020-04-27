@@ -5,6 +5,7 @@ import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { rhythm } from '../utils/typography';
+import '../styles/global.css';
 
 const BlogIndex = ({ data, location }): JSX.Element => {
   const siteTitle = data.site.siteMetadata.title;
@@ -28,7 +29,28 @@ const BlogIndex = ({ data, location }): JSX.Element => {
                   {title}
                 </Link>
               </h3>
-              <small>{`${node.frontmatter.date} • ${node.timeToRead} min read`}</small>
+              <small>
+                {node.frontmatter.date}
+                {' '}
+                •
+                {node.timeToRead > 25 ? (
+                  <span>
+                    {new Array(Math.ceil((node.timeToRead - 25) / 5)).fill(0).map((i) => (
+                      <span role="img" key={i} aria-label="readtime-coffee">🍕</span>
+                    ))}
+                  </span>
+                ) : (
+                  <span>
+                    {new Array(Math.ceil(node.timeToRead / 5)).fill(0).map((i) => (
+                      <span role="img" key={i} aria-label="readtime-coffee">☕️</span>
+                    ))}
+                  </span>
+                )}
+                {' '}
+                {node.timeToRead}
+                {' '}
+                min read
+              </small>
             </header>
             <section>
               <p
