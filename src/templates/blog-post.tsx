@@ -42,7 +42,27 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
               marginBottom: rhythm(1),
             }}
           >
-            {`${post.frontmatter.date} • ${data.markdownRemark.timeToRead} min read`}
+            {post.frontmatter.date}
+            {' '}
+            •
+            {data.markdownRemark.timeToRead > 25 ? (
+              <span>
+                {new Array(Math.ceil((
+                  data.markdownRemark.timeToRead - 25) / 5)).fill(0).map((i) => (
+                    <span role="img" key={i} aria-label="readtime-coffee">🍕</span>
+                ))}
+              </span>
+            ) : (
+              <span>
+                {new Array(Math.ceil(data.markdownRemark.timeToRead / 5)).fill(0).map((i) => (
+                  <span role="img" key={i} aria-label="readtime-coffee">☕️</span>
+                ))}
+              </span>
+            )}
+            {' '}
+            {data.markdownRemark.timeToRead}
+            {' '}
+            min read
           </p>
         </header>
         <CommentCount config={disqusConfig} placeholder="" />
