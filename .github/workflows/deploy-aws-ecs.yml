@@ -32,8 +32,6 @@ jobs:
           username: DOCKER_USER
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: "latest,$IMAGE_TAG"
-        run: |
-          echo "::set-output name=image::$DOCKER_USER/$DOCKER_REPOSITORY:$IMAGE_TAG"
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
@@ -41,7 +39,7 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: hwasurr-dot-io
-          image: ${{ steps.build-image.outputs.image }}
+          image: ${{ secrets.DOCKER_USERNAME }}/hwasurr-dot-io:${{ github.sha }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
