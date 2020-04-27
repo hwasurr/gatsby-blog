@@ -29,7 +29,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         with:
           name: $DOCKER_USER/$DOCKER_REPOSITORY
-          username: DOCKER_USER
+          username: $DOCKER_USER
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: "latest,$IMAGE_TAG"
 
