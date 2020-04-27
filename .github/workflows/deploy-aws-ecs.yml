@@ -22,14 +22,11 @@ jobs:
 
       - name: Build, tag, and push image to Docker Hub
         uses: elgohr/Publish-Docker-Github-Action@2.14
-        env:
-          DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
-          IMAGE_TAG: ${{ github.sha }}
         with:
-          name: ${{DOCKER_USER}}/hwasurr-dot-io
+          name: ${{ secrets.DOCKER_USERNAME }}/hwasurr-dot-io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          tags: "latest,$IMAGE_TAG"
+          tags: ${{ github.sha }}
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
