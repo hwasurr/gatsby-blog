@@ -76,9 +76,7 @@ module.exports = {
         pathToConfigModule: 'src/utils/typography',
       },
     },
-    {
-      resolve: 'gatsby-plugin-typescript'
-    },
+    'gatsby-plugin-typescript',
     {
       resolve: 'gatsby-plugin-disqus',
       options: {

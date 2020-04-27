@@ -12,13 +12,14 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
   const siteTitle = data.site.siteMetadata.title;
   const { previous, next } = pageContext;
 
-  const disqus_developer = 1;
+  // const disqus_developer = 1;
   const disqusConfig = {
     url: `${data.site.siteMetadata.siteUrl + location.pathname}`,
     identifier: post.frontmatter.title,
     title: post.frontmatter.title,
-
   };
+
+  console.log(data.markdownRemark);
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -43,7 +44,7 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
               marginBottom: rhythm(1),
             }}
           >
-            {post.frontmatter.date}
+            {`${post.frontmatter.date} • ${data.markdownRemark.timeToRead} min read`}
           </p>
         </header>
         <CommentCount config={disqusConfig} placeholder="" />
@@ -91,7 +92,7 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
         </ul>
       </nav>
 
-      <Disqus config={disqusConfig} />
+      {/* <Disqus config={disqusConfig} /> */}
     </Layout>
   );
 };
@@ -114,6 +115,8 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
       }
+      tableOfContents
+      timeToRead
     }
   }
 `;

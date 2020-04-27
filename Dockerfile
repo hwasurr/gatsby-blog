@@ -1,13 +1,16 @@
-FROM node:12-alpine as builder
-# Get the necessary build tools
-RUN apk update && apk add build-base autoconf automake libtool pkgconfig nasm
+# build
+FROM node:11-alpine AS build
 
-# Add the package.json file and build the node_modules folder
+RUN apk add --no-cache --virtual .gyp python make g++
+
 WORKDIR /app
-COPY ./package*.json ./
-RUN yarn
+ENV NODE_ENV=production
 
-# Get a clean image with gatsby-cli and the pre-built node modules
-FROM node:12-alpine
-RUN yarn global add gatsby-cli && gatsby telemetry --disable && mkdir /save
-COPY --from=builder /app/node_modules /save/node_modules
+COPY package.json yarn.lock ./
+RUN yarn --frozen-lockfile --non-interactive
+
+COPY . .
+RUN yarn build
+
+EXPOSE 9000
+CMD ["yarn", "serve", "-H", "0.0.0.0"]
