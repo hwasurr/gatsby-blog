@@ -61,7 +61,17 @@ const Bio = (): JSX.Element => {
         <p style={{ margin: '0px 0px 8px' }}>
           Written by
           {' '}
-          <strong>{author.name}</strong>
+          <strong>
+            {author.name}
+            <span
+              role="img"
+              aria-label="name-thumb"
+              style={{ display: 'inline-block' }}
+              className="animated bounce infinite slower"
+            >
+              👍🏻
+            </span>
+          </strong>
           <br />
           {author.summary}
         </p>

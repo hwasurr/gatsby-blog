@@ -5,7 +5,10 @@ import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { rhythm } from '../utils/typography';
+
+// css
 import '../styles/global.css';
+import '../styles/animate.css';
 
 const BlogIndex = ({ data, location }): JSX.Element => {
   const siteTitle = data.site.siteMetadata.title;

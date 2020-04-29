@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: "Hwasurr's Devlog",
     author: {
-      name: 'hwasurr👍🏻',
+      name: 'hwasurr',
       summary: '부산에서 개발하고 있습니다. 항상 어제보다 더 나은 내가 되기 위해 노력합니다.🚴‍♀️',
     },
     description: '항상 어제보다 더 나은 내가 되기 위해 노력합니다.',
@@ -77,12 +77,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-typescript',
-    {
-      resolve: 'gatsby-plugin-disqus',
-      options: {
-        shortname: 'hwasurr'
-      }
-    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import { Disqus, CommentCount } from 'gatsby-plugin-disqus';
 
 import Bio from '../components/bio';
 import Layout from '../components/layout';
@@ -65,7 +64,6 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
             min read
           </p>
         </header>
-        <CommentCount config={disqusConfig} placeholder="" />
 
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
@@ -110,7 +108,6 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
         </ul>
       </nav>
 
-      <Disqus config={disqusConfig} />
     </Layout>
   );
 };
