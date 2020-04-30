@@ -33,19 +33,30 @@ const BlogIndex = ({ data, location }): JSX.Element => {
                 </Link>
               </h3>
               <small>
+                {node.frontmatter.tags.sort().map((tag: string) => (
+                  <span
+                    className="tag"
+                    key={title + tag}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </small>
+              <br />
+              <small>
                 {node.frontmatter.date}
                 {' '}
                 •
                 {node.timeToRead > 25 ? (
                   <span>
-                    {new Array(Math.ceil((node.timeToRead - 25) / 5)).fill(0).map((i) => (
-                      <span role="img" key={i} aria-label="readtime-coffee">🍕</span>
+                    {new Array(Math.ceil((node.timeToRead - 25) / 5)).fill('🍕').map((i, idx) => (
+                      <span role="img" key={`${i}-${idx}`} aria-label="readtime-coffee">{i}</span>
                     ))}
                   </span>
                 ) : (
                   <span>
-                    {new Array(Math.ceil(node.timeToRead / 5)).fill(0).map((i) => (
-                      <span role="img" key={i} aria-label="readtime-coffee">☕️</span>
+                    {new Array(Math.ceil(node.timeToRead / 5)).fill('☕️').map((i, idx) => (
+                      <span role="img" key={`${i}-${idx}`} aria-label="readtime-coffee">{i}</span>
                     ))}
                   </span>
                 )}
@@ -89,6 +100,7 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            tags
           }
           timeToRead
         }

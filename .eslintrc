@@ -49,6 +49,7 @@
         }
     },
     "rules": {
+        "react/no-array-index-key": "warn",
         "arrow-parens": "error",
         "react/display-name": 0,
         "react/jsx-props-no-spreading": "warn",

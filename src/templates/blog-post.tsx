@@ -4,19 +4,13 @@ import { Link, graphql } from 'gatsby';
 import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import Utterances from '../components/utterances';
 import { rhythm, scale } from '../utils/typography';
 
 const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
   const post = data.markdownRemark;
   const siteTitle = data.site.siteMetadata.title;
   const { previous, next } = pageContext;
-
-  // const disqus_developer = 1;
-  const disqusConfig = {
-    url: `${data.site.siteMetadata.siteUrl + location.pathname}`,
-    identifier: post.frontmatter.title,
-    title: post.frontmatter.title,
-  };
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -34,6 +28,16 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
           >
             {post.frontmatter.title}
           </h1>
+          <small>
+            {post.frontmatter.tags.sort().map((tag: string) => (
+              <span
+                className="tag"
+                key={post.frontmatter.title + tag}
+              >
+                {tag}
+              </span>
+            ))}
+          </small>
           <p
             style={{
               ...scale(-1 / 5),
@@ -47,14 +51,14 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
             {data.markdownRemark.timeToRead > 25 ? (
               <span>
                 {new Array(Math.ceil((
-                  data.markdownRemark.timeToRead - 25) / 5)).fill(0).map((i) => (
-                    <span role="img" key={i} aria-label="readtime-coffee">🍕</span>
+                  data.markdownRemark.timeToRead - 25) / 5)).fill(0).map((i, idx) => (
+                    <span role="img" key={`${i}${idx}`} aria-label="readtime-coffee">🍕</span>
                 ))}
               </span>
             ) : (
               <span>
-                {new Array(Math.ceil(data.markdownRemark.timeToRead / 5)).fill(0).map((i) => (
-                  <span role="img" key={i} aria-label="readtime-coffee">☕️</span>
+                {new Array(Math.ceil(data.markdownRemark.timeToRead / 5)).fill(0).map((i, idx) => (
+                  <span role="img" key={`${i}${idx}`} aria-label="readtime-coffee">☕️</span>
                 ))}
               </span>
             )}
@@ -108,6 +112,8 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
         </ul>
       </nav>
 
+      <Utterances repo="hwasurr/hwasurr.io" />
+
     </Layout>
   );
 };
@@ -129,6 +135,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        tags
       }
       tableOfContents
       timeToRead

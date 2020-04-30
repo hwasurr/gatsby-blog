@@ -22,7 +22,6 @@ body a:hover {
 }
 .title:hover {
     background-color: black;
-
 }
 .social {
     text-decoration: none;
@@ -37,4 +36,12 @@ body a:hover {
     border: 1px var(--secondary-color) solid;
     border-radius: 10px;
     box-shadow: none;
+}
+.tag {
+    border: 1px var(--secondary-color) solid;
+    color: var(--primary-color);
+    border-radius: 15px;
+    padding: 4px;
+    margin-right: 4px;
+    cursor: default;
 }

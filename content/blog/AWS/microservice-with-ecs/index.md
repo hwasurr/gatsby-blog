@@ -1,7 +1,7 @@
 ---
 title: AWS ECS로 마이크로 서비스 배포하기
 date: "2020-04-29T15:18:03.284Z"
-description: "AWS ECS + AWS System Manager:Parameter store + AWS IAM + AWS Route 53 로 마이크로 서비스 배포하기"
+description: AWS ECS + AWS System Manager:Parameter store + AWS IAM + AWS Route 53 로 마이크로 서비스 배포하는 과정에 대해 기록합니다.
 tags: [AWS, DevOps]
 ---
 
