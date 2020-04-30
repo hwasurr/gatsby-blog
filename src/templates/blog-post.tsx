@@ -28,7 +28,13 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
           >
             {post.frontmatter.title}
           </h1>
-          <small>
+          <small
+            style={{
+              display: 'block',
+              marginTop: 8,
+              marginBottom: 8,
+            }}
+          >
             {post.frontmatter.tags.sort().map((tag: string) => (
               <span
                 className="tag"
