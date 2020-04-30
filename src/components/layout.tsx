@@ -58,7 +58,7 @@ const Layout = ({ location, title, children }) => {
     >
       <header>{header}</header>
       <main>{children}</main>
-      <footer>
+      <footer style={{ float: 'right' }}>
         <small>
           ©
           {' '}
