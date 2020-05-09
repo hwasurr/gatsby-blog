@@ -44,6 +44,7 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
               </span>
             ))}
           </small>
+
           <p
             style={{
               ...scale(-1 / 5),
