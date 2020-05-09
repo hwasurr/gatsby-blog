@@ -1,0 +1,19 @@
+on:
+  push:
+    branches: [dev]
+    paths:
+      - "content/**"
+
+name: test
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        
+      - name: console log
+        run: echo test
