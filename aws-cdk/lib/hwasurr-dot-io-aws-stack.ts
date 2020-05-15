@@ -12,7 +12,7 @@ export default class HwasurrDotIoAwsStack extends cdk.Stack {
     const myAmplifyApp = new amplify.App(this, 'hwasurr-dot-io', {
       sourceCodeProvider: new amplify.GitHubSourceCodeProvider({
         owner: 'hwasurr',
-        repository: 'hwasurr-dot-io',
+        repository: 'hwasurr.io',
         oauthToken: cdk.SecretValue.plainText(process.env.GITHUB_ACCESS_TOKEN_HWASURR_DOT_IO!)
       })
     });
