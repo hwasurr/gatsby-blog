@@ -120,6 +120,15 @@ AWS CDK CLI를 사용하기 위해서는 반드시 자격 증명과 리전을 �
 
 ## 첫 CDK 앱 hello world! 작성하기
 
+먼저, CDK앱을 작성하기 이전에 CDK CLI에 대해서 간단히 알아보고 시작하자.
+
+- `cdk init`: 비어있는 새로운 CDK 프로젝트를 생성한다. 빈 폴더에서만 가능하다.
+- `cdk ls`: 현재 앱의 스택 리스트를 보여준다.
+- `cdk synth`: CDK 앱의 스택들을 CloudFormation template으로 변환하고, 출력한다.
+- `cdk diff`: 이미 배포된 스택과 현재의 CDK 스택들을 비교하여 출력한다.
+- `cdk deploy`: CDK 로 작성한 현재 스택들을 AWS 계정에 배포한다.
+- `cdk destroy`: CDK 로 배포된 스택들을 삭제한다.
+
 CDK를 이용한 애플리케이션을 생성 및 개발하는 순서는 대략 다음과 같다.
 
 1. 애플리케이션 디렉토리 생성
