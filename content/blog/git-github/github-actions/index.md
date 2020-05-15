@@ -120,7 +120,7 @@ job이 가질 수 있는 순차적인 동작 나열이다. 명령어를 실행�
 - `jobs.<job_id>.steps.name`
 step의 이름을 명시한다. github actions 페이지에서 workflow구동 로그를 확인할 때 보여진다.
 - `jobs.<job_id>.steps.uses`
-해당 스텝에서 사용할 action을 선택한다. github marketplace에 선구자들이 올려 둔 많은 action들이 있다. 
+해당 스텝에서 사용할 action을 선택한다. github marketplace에 선구자들이 올려 둔 많은 action들이 있다.
 공신력있는 기관에서 생성한 github에 의해 공식적으로 확인된 action들도 있다.
 github 에서는 action을 사용 시, version을 명시하여 사용하기를 강력히 추천한다.
 `{owner}/{repo}@{ref|version}` 의 형태를 지닌다.
@@ -175,7 +175,7 @@ jobs:
 
 라는 말이 있듯, 대부분의 경우 github actions marketplace 에 있다. 그리고 깃헙을 통해 공식 인증된 action을 사용하는 것이 정신 건강에도, 프로젝트의 건강에도 좋을 것이다.
 
-하지만, 언제나 예외는 존재하기 마련이다. 내 몸에 딱 맞는 맞춤 양복같이 내 프로젝트에 딱 맞는 아름다운 action을 만들어 사용할 수도 있다. 딱히 어려워 보이지도 않아서 조금만 시간을 들인다면 커스텀 action을 제작하여 사용할 수 있을 것이다. 
+하지만, 언제나 예외는 존재하기 마련이다. 내 몸에 딱 맞는 맞춤 양복같이 내 프로젝트에 딱 맞는 아름다운 action을 만들어 사용할 수도 있다. 딱히 어려워 보이지도 않아서 조금만 시간을 들인다면 커스텀 action을 제작하여 사용할 수 있을 것이다.
 
 더 자세한 내용은 Github Actions의 building actions 공식 문서에서 확인할 수 있다.
 
