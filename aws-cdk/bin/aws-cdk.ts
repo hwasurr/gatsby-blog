@@ -7,9 +7,9 @@ import HwasurrDotIoAwsStack from '../lib/hwasurr-dot-io-aws-stack';
 dotenv.config();
 
 const app = new cdk.App();
-const stack = new HwasurrDotIoAwsStack(app, 'hwasurrDotIoAwsStack', {
+((): HwasurrDotIoAwsStack => new HwasurrDotIoAwsStack(app, 'hwasurrDotIoAwsStack', {
   env: {
     region: process.env.AWS_REGION,
     account: cdk.Aws.ACCOUNT_ID
   }
-});
+}))();
