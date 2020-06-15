@@ -3,7 +3,7 @@ module.exports = {
     title: "Hwasurr's Devlog",
     author: {
       name: 'hwasurr',
-      summary: '부산에서 개발하고 있습니다. 항상 어제보다 더 나은 내가 되기 위해 노력합니다.🚴‍♀️',
+      summary: '항상 어제보다 더 나은 내가 되기 위해 노력합니다.🚴‍♀️',
     },
     description: '항상 어제보다 더 나은 내가 되기 위해 노력합니다.',
     siteUrl: 'https://hwasurr.io/',
