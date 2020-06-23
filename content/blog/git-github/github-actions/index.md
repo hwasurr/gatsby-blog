@@ -82,18 +82,33 @@ jobs: ## job 들을 명시
 - 최 상위의 `name`
 해당 Workflow의 이름을 명시한다.
 - `on`
-해당 Workflow의 Event를 명시한다. cron 문법으로 시간을 설정할 수도, push | pull-request 등 깃헙 이벤트를 구독할 수도, 실행할 브랜치를 제한할 수도 있다.
+해당 Workflow의 Event를 명시한다. cron 문법으로 시간을 설정할 수도, push | pull-request 등 깃헙 이벤트를 구독할 수도, 실행할 브랜치를 제한할 수도 있다.  
+추가적으로, `paths`로 특정 패턴을 설정하여, 해당 패턴에 일치하는 파일이 변경되었을 때 워크플로가 실행되도록 설정할 수 있다.  
+`paths`와 반대로 `paths-ignore`로는 무시할 패턴을 설정할 수 있다. (paths 의 값의 앞에 `!`를 붙여 paths-ignore와 같이 사용할 수도 있다.)  
+하나의 깃헙 저장소에서 여러 프로젝트를 관리하는 상황이나, 특정 파일의 변경에 따라 빌드를 트리거 하거나 하지 않고 싶을 때 유용하게 사용할 수 있다.
 
 ```yaml
-## master, dev 브랜치에 push 된 경우에 실행
+# 10분마다 실행 workflow
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+
+# master, dev 브랜치에 push 된 경우에 실행
 on:
   push:
     branches: [master, dev]
 
-## 10분마다 실행 workflow
+# master, dev 브랜치에 push 되었고,
+# js파일의 변경이 있을 때에만 트리거,
+# doc 디렉토리의 변경에는 트리거 하지 않게 하고싶은 경우
 on:
-  schedule:
-    - cron: '*/10 * * * *'
+  push:
+    branches: [master, dev]
+    paths:
+      - "**.js"
+    paths-ignore:
+      - "doc/**"
+
 ```
 
 - `jobs`
