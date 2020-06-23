@@ -3,7 +3,7 @@ module.exports = {
     title: "Hwasurr's Devlog",
     author: {
       name: 'hwasurr',
-      summary: '항상 어제보다 더 나은 내가 되기 위해 노력합니다.🚴‍♀️',
+      summary: 'Aws, CI/CD, DevOps, Fullstack 개발 등에 관심이 많습니다. 항상 어제보다 더 나은 내가 되기 위해 노력합니다.🚴‍♀️',
     },
     description: '항상 어제보다 더 나은 내가 되기 위해 노력합니다.',
     siteUrl: 'https://hwasurr.io/',

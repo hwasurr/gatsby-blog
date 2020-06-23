@@ -37,7 +37,7 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
           >
             {post.frontmatter.tags.sort().map((tag: string) => (
               <span
-                className="tag"
+                className="category-tag"
                 key={post.frontmatter.title + tag}
               >
                 {tag}
