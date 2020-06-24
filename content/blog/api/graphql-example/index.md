@@ -11,12 +11,58 @@ tags: [Backend, GraphQL, React, Express]
 - 정말로 원하는 데이터만 요청할 수 있습니다. (Under-fetching, Over-fetching 을 예방합니다.)
 - 1번의 요청으로 여러 리소스에 대한 정보를 받아 올 수 있습니다.
 
-### Examples
+## Examples
 
 - 단순 쿼리
-- 여러 리소스 반환 쿼리
-- GraphQL Type
+    - GraphQL Query
 
+    ```graphql
+    {
+    	user(id: "100") {
+    		name,
+    		email
+    }
+    ```
+
+    - The result data
+
+    ```json
+    {
+    	"user": {
+    		"id": "100",
+    		"name": "John Doe",
+    		"email": "john@gamil.com"
+    }
+    ```
+
+- 여러 리소스 반환 쿼리
+    - GraphQL Query
+
+    ```graphql
+    {
+    	user(id: "100") {
+    		name,
+    		email,
+    		posts {
+    			title
+    		}
+    }
+    ```
+
+    - The result data
+
+    ```json
+    {
+    	"user": {
+    		"id": "100",
+    		"name": "John Doe",
+    		"email": "john@gamil.com",
+    		"posts": [
+    			{"title": "Post 1"},
+    			{"title": "Post 2"}
+    		]
+    }
+    ```
 ### GraphiQL
 
 브라우저 상에서 동작하는 GraphQL 러너 GUI. Highlighting, Error reporting, Hinting 등의 기능을 제공합니다.
