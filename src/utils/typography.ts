@@ -10,9 +10,8 @@ Wordpress2016.overrideThemeStyles = () => ({
 delete Wordpress2016.googleFonts;
 const myFonts = [
   'Merriweather', 'Georgia', '-apple-system',
-  'BlinkMacSystemFont', 'Helvetica Neue',
-  'Apple SD Gothic Neo', 'Malgun Gothic',
-  '맑은 고딕', '나눔고딕', 'Nanum Gothic',
+  'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol',
+  'BlinkMacSystemFont', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Nanum Gothic',
   'Noto Sans KR', 'Noto Sans CJK KR',
   'arial', '돋움', 'Dotum',
   'Tahoma', 'Geneva', 'sans-serif'
