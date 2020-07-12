@@ -14,11 +14,6 @@ tags: [AWS, DevOps]
 
 ## AWS ECS (Elastic Container Service)?
 
-> 2019.12.3 부터 ECS 서비스의 Cluster에 Auto Scaling을 사용할 수 있게 되었다.
-> 따라서, ECS에서 실행되는 ECS 클러스터가 클러스터의 모든 Task 및 서비스의 Resource 수요에 맞게 필요에 따라 자동으로 확장할 수 있다. (클러스터를 0개로 축소하거나, 0개에서 확장할 수도 있다.)
-> AutoScaling을 사용하면 ECS의 컨테이너식 워크로드의 안정성과 확장성을 개선하는 동시에 비용을 절감할 수 있다.
-> ECS Auto Scaling 기능은 모든 리전에 제공된다.
-
 AWS ECS는 Cluster에서 Docker container를 손쉽게 실행, 중지 및 관리할 수 있게 해주는 컨테이너 관리 서비스로, 확장성과 속도가 뛰어나다.  
 ECS는 두가지의 시작 유형을 가지고 있다. 관리하는 서버를 사용하지 않는 인프라에서 애플리케이션을 호스팅 할 수 있는 **Fargete** 시작 유형 (serverless hosting),  더 세부적인 제어를 위해 관리하는 서버(aws ec2 instance)를 두는 **EC2** 시작 유형 (EC2 instance hosting)이 있다. 필요에 따라 결정하면 된다.
 

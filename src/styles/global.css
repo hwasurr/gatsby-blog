@@ -37,7 +37,7 @@ body a:hover {
     border-radius: 10px;
     box-shadow: none;
 }
-.tag {
+.category-tag {
     border: 1px var(--secondary-color) solid;
     color: var(--primary-color);
     border-radius: 15px;

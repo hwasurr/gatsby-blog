@@ -35,7 +35,7 @@ const BlogIndex = ({ data, location }): JSX.Element => {
               <small>
                 {node.frontmatter.tags.sort().map((tag: string) => (
                   <span
-                    className="tag"
+                    className="category-tag"
                     key={title + tag}
                   >
                     {tag}
