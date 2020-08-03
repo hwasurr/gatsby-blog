@@ -722,7 +722,8 @@ App Mesh에 대한 더욱 자세한 내용은 [여기](https://docs.aws.amazon.c
 ### AWS Cloud Map
 
 CloudMap은 애플리케이션 리소스를 사용자 지정 네임스페이스를 사용하도록 등록할 수 있는 서비스로, 리소스를 추가할 때 수동으로 진행하는 이름 매핑 작업을 최소화하도록 돕는 서비스입니다.
-특히, Cloud Map은 ECS와 궁합이 잘 맞습니다. 새 컨테이너 작업을 실행 또는 종료할 때 Cloud Map에 자동으로 등록하여, 등록한 네임스페이스로 서비스를 쉽게 검색할 수 있도록 합니다.
+특히, Cloud Map은 ECS와 궁합이 잘 맞습니다. 새 컨테이너 작업을 실행 또는 종료할 때 Cloud Map에 자동으로 등록하여, 등록한 네임스페이스로 서비스를 쉽게 검색할 수 있도록 합니다.  
+ECS에서는 "서비스 검색" 기능을 활성화 하면 모든 작업 인스턴스가 자동으로 CloudMap에 수평 확장으로 등록되고, 등록 취소 됩니다. ECS는 또한 항상 최신 상태 정보를 AWS Cloud Map에 게시하여 검색 작업 시 항상 정상적인 작업 인스턴스만 반환되도록 합니다.
 
 Cloud Map에 대한 더욱 자세한 내용은 [여기](https://docs.aws.amazon.com/ko_kr/cloud-map/latest/dg/what-is-cloud-map.html)에서 확인할 수 있습니다.
 
