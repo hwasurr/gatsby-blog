@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, graphql } from 'gatsby';
 
 import Bio from '../components/bio';
@@ -9,73 +9,113 @@ import { rhythm } from '../utils/typography';
 // css
 import '../styles/global.css';
 import '../styles/animate.css';
+import TagFilter from '../components/tagFilter';
+import ToggleButton from '../components/toggleButton';
 
 const BlogIndex = ({ data, location }): JSX.Element => {
   const siteTitle = data.site.siteMetadata.title;
   const posts = data.allMarkdownRemark.edges;
 
+  const [selectedTag, setSelectedTag] = useState('전체');
+  function handleSelectedTag(tagname: string): void {
+    setSelectedTag(tagname);
+  }
+  // ******************************************************
+  // theme
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>();
+
+  // 최초 theme 설정
+  useEffect(() => {
+    const localThemeType = window.localStorage.getItem('themeType');
+    if (localThemeType) {
+      document.body.className = localThemeType;
+      setIsDarkTheme(localThemeType === 'dark');
+    }
+  }, [setIsDarkTheme]);
+
+  // theme 토글 함수
+  function handleThemeToggle(): void {
+    const themeType = document.body.className;
+    if (themeType === 'dark') {
+      window.localStorage.setItem('themeType', '');
+      document.body.className = '';
+      setIsDarkTheme(false);
+    } else {
+      window.localStorage.setItem('themeType', 'dark');
+      document.body.className = 'dark';
+      setIsDarkTheme(true);
+    }
+  }
+
   return (
     <Layout location={location} title={siteTitle}>
+      <ToggleButton toggleValue={isDarkTheme} handleToggle={handleThemeToggle} />
       <SEO title="All posts" />
       <Bio />
-      {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug;
-        return (
-          <article key={node.fields.slug}>
-            <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>
-                {node.frontmatter.tags.sort().map((tag: string) => (
-                  <span
-                    className="category-tag"
-                    key={title + tag}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </small>
-              <br />
-              <small>
-                {node.frontmatter.date}
-                {' '}
-                •
-                {node.timeToRead > 25 ? (
-                  <span>
-                    {new Array(Math.ceil((node.timeToRead - 25) / 5)).fill('🍕').map((i, idx) => (
-                      <span role="img" key={`${i}-${idx}`} aria-label="readtime-coffee">{i}</span>
-                    ))}
-                  </span>
-                ) : (
-                  <span>
-                    {new Array(Math.ceil(node.timeToRead / 5)).fill('☕️').map((i, idx) => (
-                      <span role="img" key={`${i}-${idx}`} aria-label="readtime-coffee">{i}</span>
-                    ))}
-                  </span>
-                )}
-                {' '}
-                {node.timeToRead}
-                {' '}
-                min read
-              </small>
-            </header>
-            <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </section>
-          </article>
-        );
-      })}
+      <TagFilter posts={posts} handleSelectedTag={handleSelectedTag} />
+      {posts
+        .filter(({ node }) => {
+          if (selectedTag === '전체') return true;
+          return node.frontmatter.tags.includes(selectedTag);
+        })
+        .map(({ node }) => {
+          const title = node.frontmatter.title || node.fields.slug;
+          return (
+            <article key={node.fields.slug}>
+              <header>
+                <h3
+                  style={{
+                    marginBottom: rhythm(1 / 4),
+                  }}
+                >
+                  <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
+                    {title}
+                  </Link>
+                </h3>
+                <small>
+                  {node.frontmatter.tags.sort().map((tag: string) => (
+                    <span
+                      className="category-tag"
+                      key={title + tag}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </small>
+                <br />
+                <small>
+                  {node.frontmatter.date}
+                  {' '}
+                  •
+                  {node.timeToRead > 25 ? (
+                    <span>
+                      {new Array(Math.ceil((node.timeToRead - 25) / 5)).fill('🍕').map((i, idx) => (
+                        <span role="img" key={`${i}-${idx}`} aria-label="readtime-coffee">{i}</span>
+                      ))}
+                    </span>
+                  ) : (
+                    <span>
+                      {new Array(Math.ceil(node.timeToRead / 5)).fill('☕️').map((i, idx) => (
+                        <span role="img" key={`${i}-${idx}`} aria-label="readtime-coffee">{i}</span>
+                      ))}
+                    </span>
+                  )}
+                  {' '}
+                  {node.timeToRead}
+                  {' '}
+                  min read
+                </small>
+              </header>
+              <section>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: node.frontmatter.description || node.excerpt,
+                  }}
+                />
+              </section>
+            </article>
+          );
+        })}
     </Layout>
   );
 };

@@ -2,16 +2,16 @@
 @font-face {
     font-family: "AppleSDGothicNeoR";
     src: url(./fonts/AppleSDGothicNeoR.ttf) format("truetype");
-  }
-  
+}
+
 html {
     --primary-color: #df7861;
     --secondary-color: #ecb390;
     --third-color: #ecdfc8;
     --fourth-color: #fcf8e8;
-}
-blockquote {
-    border-left: 0.32813rem solid var(--primary-color);
+
+    --dark-font-color: #d8d7d7;
+    --dark-background-color: #282c35;
 }
 body a {
     color: var(--primary-color);
@@ -49,4 +49,62 @@ body a:hover {
     padding: 4px;
     margin-right: 4px;
     cursor: default;
+}
+
+button.category-tag {
+    cursor: pointer;
+    outline: none;
+    background-color: inherit;
+}
+button.category-tag:active {
+    background-color: var(--secondary-color);
+    color: var(--fourth-color);
+}
+blockquote {
+    border-left: 0.32813rem solid var(--primary-color);
+    color: inherit;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #fff; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ddd; 
+    border: 2px solid transparent;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #c0c0c0
+}
+
+
+.dark ::-webkit-scrollbar-track {
+    background: #d3d3d3; 
+}
+
+/* 다크모드 */
+.dark {
+    background-color: var(--dark-background-color);
+    color: var(--dark-font-color);
+}
+/* Handle */
+.dark ::-webkit-scrollbar-thumb {
+    background: #808080; 
+    border: 2px solid transparent;
+}
+
+/* Handle on hover */
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #979797
 }
