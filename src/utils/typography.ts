@@ -11,7 +11,7 @@ delete Wordpress2016.googleFonts;
 const myFonts = [
   'Merriweather', 'Georgia', '-apple-system',
   'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol',
-  'BlinkMacSystemFont', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Nanum Gothic',
+  'BlinkMacSystemFont', 'Helvetica Neue', 'AppleSDGothicNeoR', 'Malgun Gothic', 'Nanum Gothic',
   'Noto Sans KR', 'Noto Sans CJK KR',
   'arial', '돋움', 'Dotum',
   'Tahoma', 'Geneva', 'sans-serif'
