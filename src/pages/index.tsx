@@ -20,39 +20,13 @@ const BlogIndex = ({ data, location }): JSX.Element => {
   function handleSelectedTag(tagname: string): void {
     setSelectedTag(tagname);
   }
-  // ******************************************************
-  // theme
-  const [isDarkTheme, setIsDarkTheme] = useState<boolean>();
-
-  // 최초 theme 설정
-  useEffect(() => {
-    const localThemeType = window.localStorage.getItem('themeType');
-    if (localThemeType) {
-      document.body.className = localThemeType;
-      setIsDarkTheme(localThemeType === 'dark');
-    }
-  }, [setIsDarkTheme]);
-
-  // theme 토글 함수
-  function handleThemeToggle(): void {
-    const themeType = document.body.className;
-    if (themeType === 'dark') {
-      window.localStorage.setItem('themeType', '');
-      document.body.className = '';
-      setIsDarkTheme(false);
-    } else {
-      window.localStorage.setItem('themeType', 'dark');
-      document.body.className = 'dark';
-      setIsDarkTheme(true);
-    }
-  }
 
   return (
     <Layout location={location} title={siteTitle}>
-      <ToggleButton toggleValue={isDarkTheme} handleToggle={handleThemeToggle} />
+      <ToggleButton />
       <SEO title="All posts" />
       <Bio />
-      <TagFilter posts={posts} handleSelectedTag={handleSelectedTag} />
+      <TagFilter selectedTag={selectedTag} posts={posts} handleSelectedTag={handleSelectedTag} />
       {posts
         .filter(({ node }) => {
           if (selectedTag === '전체') return true;

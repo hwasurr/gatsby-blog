@@ -1,0 +1,42 @@
+input[type=checkbox].toggle {
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+label.togglelabel {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 40px;
+	height: 20px;
+	background: grey;
+	display: block;
+	border-radius: 20px;
+	position: relative;
+}
+
+label.togglelabel:after {
+	content: '';
+	position: absolute;
+	top: 2.5px;
+	left: 3px;
+	width: 15px;
+	height: 15px;
+	background: #fff;
+	border-radius: 10px;
+	transition: 0.4s;
+}
+
+input.toggle:checked + label.togglelabel {
+	background: #bada55;
+}
+
+input.toggle:checked + label.togglelabel:after {
+	left: calc(100% - 3px);
+	transform: translateX(-100%);
+}
+
+label.togglelabel:active:after {
+	width: 25px;
+}
+

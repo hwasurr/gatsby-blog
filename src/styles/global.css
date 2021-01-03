@@ -60,6 +60,10 @@ button.category-tag:active {
     background-color: var(--secondary-color);
     color: var(--fourth-color);
 }
+button.category-tag.active {
+    background-color: var(--secondary-color);
+    color: var(--fourth-color);
+}
 blockquote {
     border-left: 0.32813rem solid var(--primary-color);
     color: inherit;

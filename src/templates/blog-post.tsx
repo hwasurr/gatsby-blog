@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Utterances from '../components/utterances';
 import { rhythm, scale } from '../utils/typography';
+import ToggleButton from '../components/toggleButton';
 
 const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
   const post = data.markdownRemark;
@@ -14,6 +15,7 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
 
   return (
     <Layout location={location} title={siteTitle}>
+      <ToggleButton />
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}

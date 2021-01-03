@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 
 export interface TagFilterProps {
   posts: any;
+  selectedTag: string;
   handleSelectedTag: () => void;
 }
 export default function TagFilter({
   posts,
+  selectedTag,
   handleSelectedTag
 }): JSX.Element {
   const SCROLL_SPEED = 2;
@@ -61,7 +63,7 @@ export default function TagFilter({
       >
         {getAllTags().map((tag) => (
           <button
-            className="category-tag"
+            className={selectedTag === tag ? 'category-tag active' : 'category-tag'}
             type="button"
             key={tag}
             style={{ fontSize: 12 }}
