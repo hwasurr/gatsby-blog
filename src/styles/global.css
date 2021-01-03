@@ -72,10 +72,10 @@ blockquote {
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 15px;
     height: 10px;
-  }
-  
+}
+
 /* Track */
 ::-webkit-scrollbar-track {
     background: #fff; 
@@ -83,19 +83,15 @@ blockquote {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #ddd; 
+    background: #d3d3d3; 
     border: 2px solid transparent;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #c0c0c0
+    background: #808080;
 }
 
-
-.dark ::-webkit-scrollbar-track {
-    background: #d3d3d3; 
-}
 
 /* 다크모드 */
 .dark {
@@ -104,11 +100,15 @@ blockquote {
 }
 /* Handle */
 .dark ::-webkit-scrollbar-thumb {
-    background: #808080; 
+    background: #808080;
     border: 2px solid transparent;
 }
 
 /* Handle on hover */
 .dark ::-webkit-scrollbar-thumb:hover {
     background: #979797
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #d3d3d3; 
 }
