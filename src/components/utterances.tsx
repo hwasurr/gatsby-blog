@@ -8,7 +8,7 @@ export interface UtterancesProps {
 
 const Utterances: React.FC<UtterancesProps> = React.memo(({ repo }) => {
   const containerRef = createRef<HTMLDivElement>();
-  const themeType = window.localStorage.getItem('themeType');
+  const themeType = typeof window !== 'undefined' ? window.localStorage.getItem('themeType') : null;
 
   useLayoutEffect(() => {
     const utterances = document.createElement('script');

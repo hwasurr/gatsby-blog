@@ -9,7 +9,7 @@ export default function ToggleButton(): JSX.Element {
 
   // 최초 theme 설정
   React.useEffect(() => {
-    const localThemeType = window.localStorage.getItem('themeType');
+    const localThemeType = typeof window !== 'undefined' ? window.localStorage.getItem('themeType') : null;
     if (localThemeType) {
       document.body.className = localThemeType;
       setIsDarkTheme(localThemeType === 'dark');
