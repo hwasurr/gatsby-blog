@@ -29,6 +29,7 @@ const Bio = (): JSX.Element => {
           }
           social {
             github
+            gmail
           }
         }
       }
@@ -80,6 +81,11 @@ const Bio = (): JSX.Element => {
           {social.github && (
           <a className="social" href={`https://github.com/${social.github}`}>
             Github
+          </a>
+          )}
+          {social.gmail && (
+          <a className="social" href={`mailto:${social.gmail}`}>
+            E-mail
           </a>
           )}
         </div>

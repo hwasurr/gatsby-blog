@@ -3,12 +3,13 @@ module.exports = {
     title: "Hwasurr's Devlog",
     author: {
       name: 'hwasurr',
-      summary: 'Aws, CI/CD, DevOps, Fullstack 등에 관심이 많습니다. 항상 어제보다 더 나은 내가 되기 위해 노력합니다.🚴‍♀️',
+      summary: 'Aws, CI/CD, DevOps, Web Fullstack 등에 관심이 많습니다. 항상 어제보다 더 나은 내가 되기 위해 노력합니다.🚴‍♀️',
     },
     description: '항상 어제보다 더 나은 내가 되기 위해 노력합니다.',
     siteUrl: 'https://hwasurr.io/',
     social: {
       github: 'hwasurr',
+      gmail: 'iamsupermazinga@gmail.com',
     },
   },
   plugins: [
@@ -77,8 +78,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-typescript',
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    'gatsby-plugin-sitemap', // 사이트맵
+
   ],
 };
