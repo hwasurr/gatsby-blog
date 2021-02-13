@@ -480,7 +480,7 @@ CloudWatch Logs는 AWS 서비스에 있는 다양한 애플리케이션의 중�
 
     CloudTrail은 AWS 계정 내 모든 API 호출(SDK, GUI, CLI)과 활동을 기록하여 S3에 저장하여 확인할 수 있도록 돕는 서비스입니다. AWS GUI 콘솔의 모든 작업은 내부적으로 API를 호출합니다. 그러므로 어떤 작업을 처리하였는지 확인하고 검색, 다운로드, 보관할 수 있습니다.  
     CloudTrail은 AWS 계정에서 기본적으로 활성화되어 있습니다.  
-    CloudTrail에 대한 더욱 자세한 내용은 [여기](https://docs.aws.amazon.com/ko_kr/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)에서 확인할 수 있습니다.
+    CloudTrail에 대한 더욱 자세한 내용은 [여기](https://docs.aws.amazon.com/ko_kr/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)에서 확인할 수 있습니다.
 
 - CloudWatch함께 사용되는 기능: **VPC Flow Logs**
 
