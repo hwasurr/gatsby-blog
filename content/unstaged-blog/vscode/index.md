@@ -38,7 +38,7 @@ typescriptreact 선택
 
 vscode 팁
 리팩토링, import 미관리 등으로 import가 엉망이 되었을 때
-ctrl(command) + shift + p  => organize imports  => 매직
+shift + option + o  => organize imports  => 매직
 
 ### move to a new file
 

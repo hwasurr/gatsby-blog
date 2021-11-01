@@ -1,12 +1,12 @@
+import { graphql, Link } from 'gatsby';
 import React from 'react';
-import { Link, graphql } from 'gatsby';
-
 import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import ToggleButton from '../components/toggleButton';
 import Utterances from '../components/utterances';
 import { rhythm, scale } from '../utils/typography';
-import ToggleButton from '../components/toggleButton';
+
 
 const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
   const post = data.markdownRemark;
