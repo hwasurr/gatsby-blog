@@ -4,5 +4,5 @@
 
 ## Stack
 
-- [AWS Amplify](https://aws.amazon.com/ko/amplify/)
+- [Vercel](https://vercel.com)
 - [Gatsby.js](https://www.gatsbyjs.org/)
