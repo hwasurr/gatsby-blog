@@ -10,13 +10,22 @@ html {
     --third-color: #ecdfc8;
     --fourth-color: #fcf8e8;
 
-    --dark-font-color: #d8d7d7;
+    --font-color: rgba(0, 0, 0, 0.8);
+    --dark-font-color: rgba(255, 255, 255, 0.83);
     --dark-background-color: #282c35;
+}
+body {
+    color: var(--font-color);
 }
 body a {
     color: var(--primary-color);
     transition: all 0.25s;
 }
+
+code[class*="language-"], pre[class*="language-"] {
+    border-radius: 8px;
+}
+
 body a:hover {
     background-color: var(--secondary-color);
     color: var(--fourth-color);
@@ -73,8 +82,8 @@ blockquote {
 
 /* width */
 ::-webkit-scrollbar {
-    width: 15px;
-    height: 10px;
+    width: 12px;
+    height: 8px;
 }
 
 /* Track */
@@ -85,12 +94,12 @@ blockquote {
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #d3d3d3; 
-    border: 2px solid transparent;
+    border: 1px solid transparent;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #808080;
+    background: #adadad;
 }
 
 
@@ -101,7 +110,7 @@ blockquote {
 }
 /* Handle */
 .dark ::-webkit-scrollbar-thumb {
-    background: #808080;
+    background: #adadad;
     border: 2px solid transparent;
 }
 
@@ -113,3 +122,4 @@ blockquote {
 .dark ::-webkit-scrollbar-track {
     background: #d3d3d3; 
 }
+
