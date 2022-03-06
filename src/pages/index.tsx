@@ -1,25 +1,23 @@
+import { graphql, Link } from 'gatsby';
 import React, { useState } from 'react';
-import { Link, graphql } from 'gatsby';
-
 import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import { rhythm } from '../utils/typography';
-
-// css
-import '../styles/global.css';
-import '../styles/animate.css';
 import TagFilter from '../components/tagFilter';
 import ToggleButton from '../components/toggleButton';
+import '../styles/animate.css';
+// css
+import '../styles/global.css';
+import { rhythm } from '../utils/typography';
 
-const BlogIndex = ({ data, location }): JSX.Element => {
+function BlogIndex({ data, location }): JSX.Element {
   const siteTitle = data.site.siteMetadata.title;
   const posts = data.allMarkdownRemark.edges;
 
   const [selectedTag, setSelectedTag] = useState('전체');
-  function handleSelectedTag(tagname: string): void {
+  const handleSelectedTag = (tagname: string): void => {
     setSelectedTag(tagname);
-  }
+  };
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -61,6 +59,7 @@ const BlogIndex = ({ data, location }): JSX.Element => {
                   {node.frontmatter.date}
                   {' '}
                   •
+                  {' '}
                   {node.timeToRead > 25 ? (
                     <span>
                       {new Array(Math.ceil((node.timeToRead - 25) / 5)).fill('🍕').map((i, idx) => (
@@ -92,7 +91,7 @@ const BlogIndex = ({ data, location }): JSX.Element => {
         })}
     </Layout>
   );
-};
+}
 
 export default BlogIndex;
 
@@ -103,7 +102,9 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      filter: { frontmatter: {title: {ne: "about-me"} } }
+      sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           excerpt
@@ -111,7 +112,7 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "YYYY. MM. DD")
             title
             description
             tags

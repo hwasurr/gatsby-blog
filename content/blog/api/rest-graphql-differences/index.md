@@ -24,11 +24,11 @@ GraphQL은 API에 대한 새로운 패러다임으로 여겨지고 있습니다.
 
 ```json
 {
-	"title": "Romance of the Three Kingdoms",
-	"author": {
-		"firstName": "Luo",
-		"lastName": "Guanzhong"
-	}
+  "title": "Romance of the Three Kingdoms",
+  "author": {
+    "firstName": "Luo",
+    "lastName": "Guanzhong"
+  }
 }
 ```
 
@@ -38,15 +38,15 @@ GraphQL은 API에 대한 새로운 패러다임으로 여겨지고 있습니다.
 
 ```graphql
 type Book {
-	id: ID
-	title: String
-	author: Author
+  id: ID
+  title: String
+  author: Author
 }
 type Author {
-	id: ID
-	firstName: String
-	lastName: String
-	books: [Book]
+  id: ID
+  firstName: String
+  lastName: String
+  books: [Book]
 }
 ```
 
@@ -56,8 +56,8 @@ Book과 Author에 접근할 수 있도록, 우리는 `Query`라는 타입이 필
 
 ```graphql
 type Query {
-	book(id: ID!): Book
-	author(id: ID!): Author
+  book(id: ID!): Book
+  author(id: ID!): Author
 }
 ```
 
@@ -69,7 +69,7 @@ type Query {
 {
   "title": "Black Hole Blues",
   "author": {
-    "firstName": "Janna",
+    "firstName": "Janna"
   }
 }
 ```
@@ -78,7 +78,7 @@ REST와는 다르게 /books등과 같이 각 Resource에 대한 엔드포인트�
 
 ### URL Routes vs GraphQL Schema
 
-API는 요청할 수 있는 리소스가 어떤 것이 있고, 어떤 리소스에 어떤 요청을 했을 때 어떠한 결과가 나에게 전달되는 지를 모르면, 당연하게도 아무 쓸모가 없습니다.  모든 API 서비스는 해당 API에 대한 명세가 있습니다. GraphQL에서는 GraphQL introspection이, REST API 에서는 Swagger가 문서화를 쉽게 도와줍니다. 문서화 뿐만 아니라, 실제 요청을 테스트해 볼 수도 있도록 도와줍니다.
+API는 요청할 수 있는 리소스가 어떤 것이 있고, 어떤 리소스에 어떤 요청을 했을 때 어떠한 결과가 나에게 전달되는 지를 모르면, 당연하게도 아무 쓸모가 없습니다. 모든 API 서비스는 해당 API에 대한 명세가 있습니다. GraphQL에서는 GraphQL introspection이, REST API 에서는 Swagger가 문서화를 쉽게 도와줍니다. 문서화 뿐만 아니라, 실제 요청을 테스트해 볼 수도 있도록 도와줍니다.
 
 ```
 GET /books/:id
@@ -102,32 +102,32 @@ API를 요청하면 API서버에서는 어떻게 될까요? 요청으로부터�
 - REST API
 
 ```jsx
-app.get('/books/:id', function (req, res) {
-	const { id } = req.params;
+app.get("/books/:id", function (req, res) {
+  const { id } = req.params;
 
-	// working with DB or call different API, ...
+  // working with DB or call different API, ...
 
-	const result = {
-		title: "Romance of the Three Kingdoms",
-		author: {
-			firstName: "Luo",
-			lastName: "Guanzhong"
-		}
-	};
+  const result = {
+    title: "Romance of the Three Kingdoms",
+    author: {
+      firstName: "Luo",
+      lastName: "Guanzhong",
+    },
+  };
 
-	res.send(result);
-})
+  res.send(result);
+});
 ```
 
 title과 author 필드를 갖는 json 데이터를 라는 문자열을 응답하는 /books 엔드포인트가 있습니다. /books 엔드포인트는 GET 방식 요청에만 반응합니다. 클라이언트에서 이 서버의 `GET /books/1`로 요청하면 다음 응답을 받을 수 있습니다.
 
 ```json
 {
-	"title": "Romance of the Three Kingdoms",
-	"author": {
-		"firstName": "Luo",
-		"lastName": "Guanzhong"
-	}
+  "title": "Romance of the Three Kingdoms",
+  "author": {
+    "firstName": "Luo",
+    "lastName": "Guanzhong"
+  }
 }
 ```
 
@@ -135,34 +135,33 @@ title과 author 필드를 갖는 json 데이터를 라는 문자열을 응답하
 
 ```jsx
 const resolvers = {
-	Query: {
-		book: (parent, args) => {
+  Query: {
+    book: (parent, args) => {
+      // working with DB or call different API, ...
 
-			// working with DB or call different API, ...
-
-			const result = {
-				title: "Romance of the Three Kingdoms",
-			};
-			return result;
-		},
-		author: (parent, args) => ({ firstName: "Luo", lastName: "Guanzhong" })
-	}
-}
+      const result = {
+        title: "Romance of the Three Kingdoms",
+      };
+      return result;
+    },
+    author: (parent, args) => ({ firstName: "Luo", lastName: "Guanzhong" }),
+  },
+};
 ```
 
-REST와는 다르게 특정 엔드포인트에 대한 어떤 함수를 제공하는 대신, Query타입의  `books`와 같은 특정 필드에 해당하는 함수를 제공합니다. GraphQL에서 이런 함수를 resolver 라고 합니다.
+REST와는 다르게 특정 엔드포인트에 대한 어떤 함수를 제공하는 대신, Query타입의 `books`와 같은 특정 필드에 해당하는 함수를 제공합니다. GraphQL에서 이런 함수를 resolver 라고 합니다.
 
 클라이언트에서 다음의 쿼리를 통해 요청하여 응답을 받을 수 있습니다.
 
 ```graphql
 query {
-	book(id: "1") {
-		title
-		author {
-			firstName
-			lastName
-		}
-	}
+  book(id: "1") {
+    title
+    author {
+      firstName
+      lastName
+    }
+  }
 }
 ```
 
@@ -170,11 +169,11 @@ query {
 
 ```json
 {
-	"title": "Romance of the Three Kingdoms",
-	"author": {
-		"firstName": "Luo",
-		"lastName": "Guanzhong"
-	}
+  "title": "Romance of the Three Kingdoms",
+  "author": {
+    "firstName": "Luo",
+    "lastName": "Guanzhong"
+  }
 }
 ```
 

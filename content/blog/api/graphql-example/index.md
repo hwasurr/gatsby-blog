@@ -14,55 +14,58 @@ tags: [Backend, GraphQL, React, Express]
 ## Examples
 
 - 단순 쿼리
-    - GraphQL Query
 
-    ```graphql
-    {
-    	user(id: "100") {
-    		name,
-    		email
-    }
-    ```
+  - GraphQL Query
 
-    - The result data
+  ```graphql
+  {
+  	user(id: "100") {
+  		name,
+  		email
+  }
+  ```
 
-    ```json
-    {
-    	"user": {
-    		"id": "100",
-    		"name": "John Doe",
-    		"email": "john@gamil.com"
-    }
-    ```
+  - The result data
+
+  ```json
+  {
+  	"user": {
+  		"id": "100",
+  		"name": "John Doe",
+  		"email": "john@gamil.com"
+  }
+  ```
 
 - 여러 리소스 반환 쿼리
-    - GraphQL Query
 
-    ```graphql
-    {
-    	user(id: "100") {
-    		name,
-    		email,
-    		posts {
-    			title
-    		}
-    }
-    ```
+  - GraphQL Query
 
-    - The result data
+  ```graphql
+  {
+  	user(id: "100") {
+  		name,
+  		email,
+  		posts {
+  			title
+  		}
+  }
+  ```
 
-    ```json
-    {
-    	"user": {
-    		"id": "100",
-    		"name": "John Doe",
-    		"email": "john@gamil.com",
-    		"posts": [
-    			{"title": "Post 1"},
-    			{"title": "Post 2"}
-    		]
-    }
-    ```
+  - The result data
+
+  ```json
+  {
+  	"user": {
+  		"id": "100",
+  		"name": "John Doe",
+  		"email": "john@gamil.com",
+  		"posts": [
+  			{"title": "Post 1"},
+  			{"title": "Post 2"}
+  		]
+  }
+  ```
+
 ### GraphiQL
 
 브라우저 상에서 동작하는 GraphQL 러너 GUI. Highlighting, Error reporting, Hinting 등의 기능을 제공합니다.
@@ -75,7 +78,7 @@ tags: [Backend, GraphQL, React, Express]
 
 ## 예제. express + grahpql + react + react-apollo
 
-아래에는 axios로 json-server 와 REST 통신하는 express + graphql 서버를 만들고,  react에서 express+graphql 서버로 CRUD 작업을 요청하여 데이터를 교환하는 과정을 담았습니다.
+아래에는 axios로 json-server 와 REST 통신하는 express + graphql 서버를 만들고, react에서 express+graphql 서버로 CRUD 작업을 요청하여 데이터를 교환하는 과정을 담았습니다.
 
 json-server에 React 단에서 곧바로 요청을 하면 되지 않느냐? 하는 의문이 있을 수 있습니다. 쉽게 예제를 이해하기 위한 구조라고 생각해 주시기 바랍니다. 위에서 언급 한대로, GraphQL은 json-server 와 같은 데이터 서버를 사용할 수도 있고 mysql, mongodb(mongoose), 등 RDB, NoSQL, 어떤 데이터베이스와도 함께 사용할 수 있습니다.
 
@@ -131,26 +134,26 @@ yarn add nodemon --dev
 
 ```json
 {
-    "customers": [
-        {
-            "id": "1",
-            "name": "Dan",
-            "email": "dan@gmail.com",
-            "age": 15
-        },
-        {
-            "id": "2",
-            "name": "Simon",
-            "email": "simon@gmail.com",
-            "age": 25
-        },
-        {
-            "id": "3",
-            "name": "Mbaku",
-            "email": "baku@gmail.com",
-            "age": 27
-        }
-    ]
+  "customers": [
+    {
+      "id": "1",
+      "name": "Dan",
+      "email": "dan@gmail.com",
+      "age": 15
+    },
+    {
+      "id": "2",
+      "name": "Simon",
+      "email": "simon@gmail.com",
+      "age": 25
+    },
+    {
+      "id": "3",
+      "name": "Mbaku",
+      "email": "baku@gmail.com",
+      "age": 27
+    }
+  ]
 }
 ```
 
@@ -185,32 +188,28 @@ app.listen(port, () => {
 ```
 
 GraphQL의 타입 및 데이터에 대한 표현 정보를 담고 있는 schema를 만들기 위해 schema.js 파일을 생성합니다. 먼저 graphql이 다룰 데이터가 어떤 것이고, 어떻게 생겨먹은 놈인지를 알려야 합니다.
-위의 `data.json` 에서 정의했 듯,  우리는 `Customer` 라는 객체를 가지고 있고 해당 객체에는 `id`, `name`, `email`, `age` 필드가 존재합니다. 이 객체에 대한 정보를 `graphql`의 `GraphQLObjectType` 생성자로 생성할 수 있습니다.
+위의 `data.json` 에서 정의했 듯, 우리는 `Customer` 라는 객체를 가지고 있고 해당 객체에는 `id`, `name`, `email`, `age` 필드가 존재합니다. 이 객체에 대한 정보를 `graphql`의 `GraphQLObjectType` 생성자로 생성할 수 있습니다.
 id와 name과 email 값은 문자열이므로, 해당 필드에 대해 `type: GraphQLString` 로 설정해 줍니다
 age 값은 숫자이므로, `type: GraphQLInt`로 설정해 줍니다.
 
 - `/schema.js`
 
 ```jsx
-const {
-	GraphQLObjectType,
-	GraphQLString,
-	GraphQLInt,
-} = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLInt } = require("graphql");
 
 // CustomerType
 const CustomerType = new GraphQLObjectType({
-	name: 'Customer',
-	fields: () => ({
-		id: { type: GraphQLString },
-		name: { type: GraphQLString },
-		email: { type: GraphQLString },
-		age: { type: GraphQLInt }
-	})
-})
+  name: "Customer",
+  fields: () => ({
+    id: { type: GraphQLString },
+    name: { type: GraphQLString },
+    email: { type: GraphQLString },
+    age: { type: GraphQLInt },
+  }),
+});
 ```
 
-이제 `Customer` 에 대한 타입정의는 끝났습니다. 이제 GraphQL이 해당 타입의 데이터를 불러오고, 추가하고, 삭제하고, 변경할 수 있도록 `Query`와 `Mutation` 이라는 이름을 가진 타입을 정의해야 합니다. `Query` 는 read, HTTP 메소드로는 get에 해당한다고 볼 수 있습니다. read를 제외한 나머지 create, update, delete 요청을 `Mutation`이 담당합니다. 먼저 Query 부터 시작하겠습니다. 
+이제 `Customer` 에 대한 타입정의는 끝났습니다. 이제 GraphQL이 해당 타입의 데이터를 불러오고, 추가하고, 삭제하고, 변경할 수 있도록 `Query`와 `Mutation` 이라는 이름을 가진 타입을 정의해야 합니다. `Query` 는 read, HTTP 메소드로는 get에 해당한다고 볼 수 있습니다. read를 제외한 나머지 create, update, delete 요청을 `Mutation`이 담당합니다. 먼저 Query 부터 시작하겠습니다.
 
 `GraphQLObjectType` 생성자로 생성하고 이름을 `RootQuery` 라고 명명합니다. `RootQuery`쿼리는 필드로 `customer`, `customers`를 갖습니다. `customer`는 `CustomerType`임을 명시하고, 해당 `GraphQL`쿼리 요청이 들어온 경우 실행 될 `resolve` 함수와 그 함수로 전달 될 `args`를 정의합니다. `customers`는 `CustomerType`의 리스트 형태이므로 `GraphQLList` 타입으로 설정하고, `resolve` 함수를 정의합니다.
 
@@ -219,50 +218,50 @@ const CustomerType = new GraphQLObjectType({
 - `/schema.js`
 
 ```jsx
-const axios = require('axios');
+const axios = require("axios");
 const {
-	GraphQLObjectType,
-	GraphQLString,
-	GraphQLInt,
-	GraphQLSchema,
-	GraphQLList,
-} = require('graphql');
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLInt,
+  GraphQLSchema,
+  GraphQLList,
+} = require("graphql");
 
 // CustomerType
 const CustomerType = new GraphQLObjectType({
-	name: 'Customer',
-	fields: () => ({
-		id: { type: GraphQLString },
-		name: { type: GraphQLString },
-		email: { type: GraphQLString },
-		age: { type: GraphQLInt }
-	})
-})
+  name: "Customer",
+  fields: () => ({
+    id: { type: GraphQLString },
+    name: { type: GraphQLString },
+    email: { type: GraphQLString },
+    age: { type: GraphQLInt },
+  }),
+});
 
 // Root Query
 const RootQuery = new GraphQLObjectType({
-	name: 'RootQueryType',
-	fields: {
-		customer: {
-			type: CustomerType,
-			args: {
-				id: { type: GraphQLString }
-			},
-			resolve(parentValue, args) {
-				return axios.get(`${API_HOSTNAME}/customers/${args.id}`)
-					.then(res => res.data);
-				// return customers.find((cus) => cus.id === args.id);
-			}
-		},
-		customers: {
-			type: new GraphQLList(CustomerType),
-			resolve(parentValue, args) {
-				return axios.get(`${API_HOSTNAME}/customers`)
-        .then(res => res.data);
-			}
-		}
-	}
-})
+  name: "RootQueryType",
+  fields: {
+    customer: {
+      type: CustomerType,
+      args: {
+        id: { type: GraphQLString },
+      },
+      resolve(parentValue, args) {
+        return axios
+          .get(`${API_HOSTNAME}/customers/${args.id}`)
+          .then((res) => res.data);
+        // return customers.find((cus) => cus.id === args.id);
+      },
+    },
+    customers: {
+      type: new GraphQLList(CustomerType),
+      resolve(parentValue, args) {
+        return axios.get(`${API_HOSTNAME}/customers`).then((res) => res.data);
+      },
+    },
+  },
+});
 ```
 
 이제는 새로운 customer의 생성, 기존 customer의 정보 변경, customer의 삭제등을 위해 `Mutation`을 작성할 차례입니다.
@@ -338,7 +337,7 @@ module.exports = new GraphQLSchema({
 })
 ```
 
-이제, graphiql로 방금 정의한 RootQuery, Mutation을 실행 해 볼 수 있습니다. 두 개의 터미널을 켜고, 각 실행 스크립트를 통해 json-server와 express-graphql 서버를 실행하고, 브라우저에서  [`http://localhost:4000/graphql`](http://localhost:4000/graphql) 로 접속하여 graphQL을 작성하여 실행해 볼 수 있습니다.
+이제, graphiql로 방금 정의한 RootQuery, Mutation을 실행 해 볼 수 있습니다. 두 개의 터미널을 켜고, 각 실행 스크립트를 통해 json-server와 express-graphql 서버를 실행하고, 브라우저에서 [`http://localhost:4000/graphql`](http://localhost:4000/graphql) 로 접속하여 graphQL을 작성하여 실행해 볼 수 있습니다.
 
 ```bash
 ## 터미널1
@@ -379,21 +378,21 @@ react hook으로 GraphQL쿼리를 관리하기 위한 `@apollo/react-hooks`, gra
 설치 이후, `src/index.js` 파일에서, ApolloClient를 생성하고 ApolloProvider 컴포넌트를 App 컴포넌트 위에 래핑해 줍니다.
 
 ```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
 
-import ApolloClient from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { createHttpLink } from 'apollo-link-http';
-import { ApolloProvider } from 'react-apollo';
+import ApolloClient from "apollo-client";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { createHttpLink } from "apollo-link-http";
+import { ApolloProvider } from "react-apollo";
 
 const client = new ApolloClient({
-  link: createHttpLink({ uri: 'http://localhost:4000/graphql' }),
+  link: createHttpLink({ uri: "http://localhost:4000/graphql" }),
   cache: new InMemoryCache(),
-})
+});
 
 ReactDOM.render(
   <React.StrictMode>
@@ -401,7 +400,7 @@ ReactDOM.render(
       <App />
     </ApolloProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 serviceWorker.unregister();
@@ -414,16 +413,16 @@ variables에 들어가는 값들을 모두 하드코딩하였으나, 해당 값�
 그리고 useQuery와 비슷하게, useMutation 훅의 리턴값 튜플의 두번째 값은 data, loading, error 등의 필드를 갖는 객체입니다. 해당 객체를 통해 mutation이 올바르게 진행되었는 지, 로딩중인지 등의 정보에 접근할 수 있습니다.
 
 ```js
-import React from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import React from "react";
+import { useQuery, useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
 const CUSTOMER_SELECT_QUERY = gql`
   query {
     customers {
-      id,
-      name,
-      email,
+      id
+      name
+      email
       age
     }
   }
@@ -431,19 +430,24 @@ const CUSTOMER_SELECT_QUERY = gql`
 const CUSTOMER_ADD_MUTATION = gql`
   mutation AddCustomer($name: String!, $email: String!, $age: Int!) {
     addCustomer(name: $name, email: $email, age: $age) {
-      id,
-      name,
-      email,
+      id
+      name
+      email
       age
     }
   }
 `;
 const CUSTOMER_EDIT_MUTATION = gql`
-  mutation EditCustomer($id: String!, $name: String, $email: String, $age: Int) {
-    editCustomer(id: $id, name: $name, email: $email, age:$age) {
-      id,
-      name,
-      email,
+  mutation EditCustomer(
+    $id: String!
+    $name: String
+    $email: String
+    $age: Int
+  ) {
+    editCustomer(id: $id, name: $name, email: $email, age: $age) {
+      id
+      name
+      email
       age
     }
   }
@@ -460,13 +464,15 @@ function Button(props) {
   const { handleClick, children } = props;
   return (
     <button
-      style={{height: 50}}
+      style={{ height: 50 }}
       type="button"
-      onClick={() => { handleClick(); }}
+      onClick={() => {
+        handleClick();
+      }}
     >
       {children}
     </button>
-  )
+  );
 }
 
 function App() {
@@ -476,60 +482,83 @@ function App() {
   const [deleteCustomer] = useMutation(CUSTOMER_DELETE_MUTATION);
 
   return (
-    <div style={{ display:'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <section>
-        <h1>
-          Example-Express-GraphQL
-        </h1>
+        <h1>Example-Express-GraphQL</h1>
       </section>
-      <section >
-        <Button handleClick={() => {refetch()}}>고객 데이터 요청</Button>
-        <Button handleClick={() => {
-          addCustomer({ variables: {
-              name: 'elise',
-              email: 'elise@gmail.com',
-              age: 24
-            }})
-            refetch()
-        }}>
+      <section>
+        <Button
+          handleClick={() => {
+            refetch();
+          }}
+        >
+          고객 데이터 요청
+        </Button>
+        <Button
+          handleClick={() => {
+            addCustomer({
+              variables: {
+                name: "elise",
+                email: "elise@gmail.com",
+                age: 24,
+              },
+            });
+            refetch();
+          }}
+        >
           고객 데이터 생성
         </Button>
-        <Button handleClick={() => {
-          const elise = data.customers.find((c) => c.name === 'elise2');
-          if (elise) {
-            editCustomer({variables: {
-              id: elise.id,
-              name: 'elise2'
-            }});
-            refetch()
-          }
-        }}>
+        <Button
+          handleClick={() => {
+            const elise = data.customers.find((c) => c.name === "elise2");
+            if (elise) {
+              editCustomer({
+                variables: {
+                  id: elise.id,
+                  name: "elise2",
+                },
+              });
+              refetch();
+            }
+          }}
+        >
           고객 데이터 변경
         </Button>
-        <Button handleClick={() => {
-          const elise = data.customers.find((c) => c.name === 'elise2');
-          if (elise) {
-            deleteCustomer({ variables: {
-              id: elise.id,
-            }})
-            refetch()
-          }
-        }}>
+        <Button
+          handleClick={() => {
+            const elise = data.customers.find((c) => c.name === "elise2");
+            if (elise) {
+              deleteCustomer({
+                variables: {
+                  id: elise.id,
+                },
+              });
+              refetch();
+            }
+          }}
+        >
           고객 데이터 삭제
         </Button>
       </section>
 
       {loading && "Loading..."}
-      {!loading && error && (<section>error occured!</section>)}
+      {!loading && error && <section>error occured!</section>}
       {!loading && !error && data && (
         <section>
           {data.customers.map((customer) => (
-              <ul key={customer.id} style={{ backgroundColor: '#ddd'}}>
-                <li>{customer.id}</li>
-                <li>{customer.name}</li>
-                <li>{customer.age}</li>
-                <li>{customer.email}</li>
-              </ul>
+            <ul key={customer.id} style={{ backgroundColor: "#ddd" }}>
+              <li>{customer.id}</li>
+              <li>{customer.name}</li>
+              <li>{customer.age}</li>
+              <li>{customer.email}</li>
+            </ul>
           ))}
         </section>
       )}

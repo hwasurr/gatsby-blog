@@ -7,8 +7,7 @@ import ToggleButton from '../components/toggleButton';
 import Utterances from '../components/utterances';
 import { rhythm, scale } from '../utils/typography';
 
-
-const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
+function BlogPostTemplate({ data, pageContext, location }): JSX.Element {
   const post = data.markdownRemark;
   const siteTitle = data.site.siteMetadata.title;
   const { previous, next } = pageContext;
@@ -56,6 +55,7 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
             {post.frontmatter.date}
             {' '}
             •
+            {' '}
             {data.markdownRemark.timeToRead > 25 ? (
               <span>
                 {new Array(Math.ceil((
@@ -124,7 +124,7 @@ const BlogPostTemplate = ({ data, pageContext, location }): JSX.Element => {
 
     </Layout>
   );
-};
+}
 
 export default BlogPostTemplate;
 
@@ -141,7 +141,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "YYYY. MM. DD")
         description
         tags
       }

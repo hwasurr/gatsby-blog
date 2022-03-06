@@ -23,6 +23,13 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+        path: `${__dirname}/content/about`,
+        name: 'about',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
         path: `${__dirname}/content/assets`,
         name: 'assets',
       },
@@ -58,7 +65,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-feed`,
+      resolve: 'gatsby-plugin-feed',
       options: {
         query: `
           {
@@ -74,17 +81,15 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.nodes.map(node => {
-                return Object.assign({}, node.frontmatter, {
-                  description: node.excerpt,
-                  date: node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + node.fields.slug,
-                  custom_elements: [{ "content:encoded": node.html }],
-                })
-              })
-            },
+            // eslint-disable-next-line max-len
+            serialize: ({ query: { site, allMarkdownRemark } }) => allMarkdownRemark.nodes.map((node) => ({
+              ...node.frontmatter,
+              description: node.excerpt,
+              date: node.frontmatter.date,
+              url: site.siteMetadata.siteUrl + node.fields.slug,
+              guid: site.siteMetadata.siteUrl + node.fields.slug,
+              custom_elements: [{ 'content:encoded': node.html }],
+            })),
             query: `
               {
                 allMarkdownRemark(
@@ -104,15 +109,15 @@ module.exports = {
                 }
               }
             `,
-            output: "/rss.xml",
+            output: '/rss.xml',
             title: "Your Site's RSS Feed",
             // optional configuration to insert feed reference in pages:
             // if `string` is used, it will be used to create RegExp and then test if pathname of
             // current page satisfied this regular expression;
             // if not provided or `undefined`, all pages will have feed reference inserted
-            match: "^/blog/",
+            match: '^/blog/',
             // optional configuration to specify external rss feed, such as feedburner
-            link: "https://feeds.feedburner.com/gatsby/blog",
+            link: 'https://feeds.feedburner.com/gatsby/blog',
           },
         ],
       },
@@ -136,8 +141,6 @@ module.exports = {
         pathToConfigModule: 'src/utils/typography',
       },
     },
-    'gatsby-plugin-typescript',
     'gatsby-plugin-sitemap', // 사이트맵
-
   ],
 };

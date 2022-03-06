@@ -1,4 +1,7 @@
 {
+    "globals": {
+        "__PATH_PREFIX__": true,
+    },
     "parser": "@typescript-eslint/parser",
     "plugins": [
         "react",
@@ -76,7 +79,6 @@
                 ]
             }
         ],
-        "@typescript-eslint/camelcase": "warn",
         "@typescript-eslint/no-var-requires": "warn", // please use import
         "no-case-declarations": "warn", // please use import
         "import/extensions": [

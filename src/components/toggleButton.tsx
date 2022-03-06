@@ -30,7 +30,6 @@ export default function ToggleButton(): JSX.Element {
     }
   }
 
-
   return (
     <div style={{
       display: 'flex', alignItems: 'center', marginLeft: 8, marginBottom: 8

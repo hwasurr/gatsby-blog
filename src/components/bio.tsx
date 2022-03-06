@@ -5,15 +5,14 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import Image from 'gatsby-image';
-
+import React from 'react';
 import { rhythm } from '../utils/typography';
 
-const Bio = (): JSX.Element => {
+function Bio(): JSX.Element {
   const data = useStaticQuery(graphql`
-    query BioQuery {
+  query BioQuery {
       avatar: file(absolutePath: { regex: "/profile-pic.png/" }) {
         childImageSharp {
           fixed(width: 75, height: 75) {
@@ -33,9 +32,7 @@ const Bio = (): JSX.Element => {
           }
         }
       }
-    }
-  `);
-
+    }`);
   const { author, social } = data.site.siteMetadata;
   return (
     <div
@@ -62,17 +59,19 @@ const Bio = (): JSX.Element => {
         <p style={{ margin: '0px 0px 8px' }}>
           Written by
           {' '}
-          <strong>
-            {author.name}
-            <span
-              role="img"
-              aria-label="name-thumb"
-              style={{ display: 'inline-block' }}
-              className="animated bounce infinite slower"
-            >
-              👍🏻
-            </span>
-          </strong>
+          <Link to="/about" style={{ boxShadow: 'none', textDecoration: 'none' }}>
+            <strong>
+              {author.name}
+              <span
+                role="img"
+                aria-label="name-thumb"
+                style={{ display: 'inline-block' }}
+                className="animated bounce infinite slower"
+              >
+                👍🏻
+              </span>
+            </strong>
+          </Link>
           <br />
           {author.summary}
         </p>
@@ -93,6 +92,6 @@ const Bio = (): JSX.Element => {
 
     </div>
   );
-};
+}
 
 export default Bio;
