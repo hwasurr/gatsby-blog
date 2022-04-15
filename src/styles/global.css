@@ -38,6 +38,10 @@ a {
     transition: all 0.25s;
     color: var(--primary-color);
 }
+a:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
 .dark a {
     color: var(--secondary-color);
 }
