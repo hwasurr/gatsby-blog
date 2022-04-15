@@ -70,10 +70,9 @@ function BlogPostTemplate({ data, pageContext, location }): JSX.Element {
                 ))}
               </span>
             )}
-            {' '}
+            {' 읽는 데 '}
             {data.markdownRemark.timeToRead}
-            {' '}
-            min read
+            {' 분 '}
           </p>
         </header>
 

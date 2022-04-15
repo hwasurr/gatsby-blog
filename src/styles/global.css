@@ -2,40 +2,61 @@
 @font-face {
     font-family: "AppleSDGothicNeoR";
     src: url(./fonts/AppleSDGothicNeoR.ttf) format("truetype");
+    font-display: swap;
 }
 
+@font-face {
+    font-family: "DungGeunMo";
+    src: url(./fonts/DungGeunMo.woff) format("truetype");
+    font-display: swap;
+}
+
+
 html {
-    --primary-color: #df7861;
-    --secondary-color: #ecb390;
-    --third-color: #ecdfc8;
+    --primary-color: #0369a1;
+    --secondary-color: #1382b2;
     --fourth-color: #fcf8e8;
 
     --font-color: rgba(0, 0, 0, 0.8);
     --dark-font-color: rgba(255, 255, 255, 0.83);
     --dark-background-color: #282c35;
 }
+
+::selection {
+    color: var(--dark-font-color);
+    background-color: var(--secondary-color);
+}
+code.language-text::selection {
+    color: var(--font-color);
+}
+
 body {
     color: var(--font-color);
 }
-body a {
-    color: var(--primary-color);
+
+a {
     transition: all 0.25s;
+    color: var(--primary-color);
+}
+.dark a {
+    color: var(--secondary-color);
+}
+.dark a:hover {
+    background-color: var(--secondary-color);
+    color: var(--dark-font-color);
 }
 
 code[class*="language-"], pre[class*="language-"] {
     border-radius: 8px;
 }
-
-body a:hover {
-    background-color: var(--secondary-color);
-    color: var(--fourth-color);
-}
 .title {
+    font-family: 'DungGeunMo';
     color: inherit;
     background-color: inherit;
 }
 .title:hover {
-    background-color: black;
+    color: inherit;
+    background-color: inherit;
 }
 .social {
     text-decoration: none;
@@ -57,6 +78,7 @@ body a:hover {
     color: var(--primary-color);
     border-radius: 15px;
     padding: 4px;
+    min-width: 50px;
     margin-right: 4px;
     cursor: default;
 }
@@ -68,11 +90,11 @@ button.category-tag {
 }
 button.category-tag:active {
     background-color: var(--secondary-color);
-    color: var(--fourth-color);
+    color: var(--dark-font-color);
 }
 button.category-tag.active {
     background-color: var(--secondary-color);
-    color: var(--fourth-color);
+    color: var(--dark-font-color);
 }
 blockquote {
     border-left: 0.32813rem solid var(--primary-color);
@@ -108,6 +130,7 @@ blockquote {
     background-color: var(--dark-background-color);
     color: var(--dark-font-color);
 }
+
 /* Handle */
 .dark ::-webkit-scrollbar-thumb {
     background: #adadad;
@@ -122,4 +145,3 @@ blockquote {
 .dark ::-webkit-scrollbar-track {
     background: #d3d3d3; 
 }
-

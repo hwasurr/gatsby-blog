@@ -73,10 +73,9 @@ function BlogIndex({ data, location }): JSX.Element {
                       ))}
                     </span>
                   )}
-                  {' '}
+                  {' 읽는 데 '}
                   {node.timeToRead}
-                  {' '}
-                  min read
+                  {' 분'}
                 </small>
               </header>
               <section>

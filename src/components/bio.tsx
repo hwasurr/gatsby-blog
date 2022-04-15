@@ -59,7 +59,10 @@ function Bio(): JSX.Element {
         <p style={{ margin: '0px 0px 8px' }}>
           Written by
           {' '}
-          <Link to="/about" style={{ boxShadow: 'none', textDecoration: 'none' }}>
+          <Link
+            to="/about"
+            style={{ boxShadow: 'none', textDecoration: 'none', fontFamily: 'DungGeunMo', }}
+          >
             <strong>
               {author.name}
               <span
