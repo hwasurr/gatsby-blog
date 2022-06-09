@@ -1,7 +1,10 @@
-::제목::
-Nestjs REST 애플리케이션의 캐시처리와 캐시 무효화
+---
+title: Nestjs REST 애플리케이션의 캐시 처리와 캐시 무효화
+date: "2022-06-09"
+tags: [Nestjs, API, REST]
+---
 
-# 캐시 개요
+## 캐시 개요
 
 캐싱/캐시처리는 일반적으로 성능 향상을 위한 캐시 등록, 검색, 무효화등의 작업을 통칭하는 의미입니다. 캐시는 캐싱을 통해 처리되는 데이터 스토리지 계층을 의미합니다.
 
@@ -18,7 +21,7 @@ Nestjs REST 애플리케이션의 캐시처리와 캐시 무효화
 - Redis: key-value 기반 In-memory 데이터베이스
 - Memcached: 범용 분산 캐시 시스템
 
-# Nestjs 요청 주기와 Interceptor
+## Nestjs 요청 주기와 Interceptor
 
 Nestjs는 Node.js + Typescript 생태계에서 확장성있는 웹 애플리케이션을 구성하기 위한 프레임워크 입니다. Nest.js는 JAVA의 Spring, C#의 ASP .NET Core, PHP의 Laravel, Python의 Django과 비슷한 위치를 차지합니다.
 
@@ -37,7 +40,7 @@ Nestjs에서의 캐시처리에 대해 알아보기 위해서 먼저 Nestjs에�
 
 Nestjs에서 캐싱처리는 주로 [Interceptors](https://docs.nestjs.com/interceptors#interceptors)가 처리합니다. 요청 주기에서 Interceptor는 비즈니스 로직이 구성되어 있는 서비스와 컨트롤러 코드가 실행되기 이전, 그리고 비즈니스 로직 코드가 실행된 이후 총 두번 거쳐가게 됩니다. 요청과 응답의 중간에 위치하므로 Interceptor 내부에서는 요청 정보와 응답 정보 모두 액세스 가능하며, 이를 활용해 캐싱(Caching), 로깅(Logging), 직렬화(Serialization), 응답 변환(Transforming) 등 여러 작업을 처리할 수 있습니다.
 
-# Nestjs 캐싱
+## Nestjs 캐싱
 
 웹 애플리케이션에서 주로 캐시되는 데이터는 응답 데이터입니다. 간단히 생각해보았을 때 Interceptor를 이용해 캐싱 작업을 다음과 같이 처리할 수 있습니다.
 
@@ -100,7 +103,7 @@ export class CacheInterceptor implements NestInterceptor {
 - 캐시데이터가 없는 경우 `@CacheTTL()`과 `@CacheKey()` 데코레이터를 통해 입력된 캐시 관련 메타데이터를 조회합니다.
 - `next.handle()` 을 통해 비즈니스 로직이 실행되도록한 뒤, 응답된 데이터를 RxJS `tap` operator 내부에서 `cacheManager`를 통해 조회한 메타데이터들에 기반해 캐시 처리합니다.
 
-## REST API 응답 캐싱 구현
+### REST API 응답 캐싱 구현
 
 Nestjs에 의해 제공되는 CacheInterceptor를 사용하기 위해, 내부적으로 사용되는 cache-manager 패키지를 설치해야 합니다.
 
@@ -158,7 +161,7 @@ Interceptor는 라우트 메서드 핸들러, 컨트롤러, 모듈 수준, 글�
 
 캐시키를 엔드포인트 URL이 아닌 다른 값으로 구성하고자 한다면 `@CacheKey('some-key')` 데코레이터를 작성할 수 있습니다. 특정 라우트 핸들러의 TTL을 다른 값으로 구성하고자 한다면 `@CacheTTL(300)` 과 같이 구성할 수 있습니다. `@CacheKey`와 `@CacheTTL` 데코레이터는 사용자 정의 메타데이터를 구성할 수 있도록 하는 [SetMetadata](https://github.com/nestjs/nest/blob/99ee3fd99341bcddfa408d1604050a9571b19bc9/packages/common/decorators/core/set-metadata.decorator.ts) 데코레이터의 확장 구성된 버전입니다.
 
-## 캐시 스토어 활용하기
+### 캐시 스토어 활용하기
 
 아무런 캐시 스토어 설정을 하지 않은 경우 Nestjs CacheModule은 기본적으로 서버 메모리상에 캐시를 저장합니다. 이와 같은 구성은 여러 Nestjs 인스턴스가 실행되어야 하는 환경에서 비효율적일 수 있습니다. 우리는 여러 서버 인스턴스가 공유하는 독립적인 캐시 스토어를 구성할 수 있습니다. cache-manager는 캐시 스토어로 사용될 수 있는 여러 엔진과 함께 동작될 수 있습니다. (Redis, Memcached, mongoDB 등)
 
@@ -194,7 +197,7 @@ export class AppModule {}
 
 ![캐시 결과](./nestjs-cache-1.png)
 
-## Nestjs 캐시 무효화
+### Nestjs 캐시 무효화
 
 TTL을 길게 설정하여 캐시가 더 오래 남아 활용되도록 구성하면 반복적인 비즈니스 로직의 실행을 더 많이 줄여 자원을 아낄 수 있고, 더 빠른 접근을 가능케 할 수 있습니다. 그렇지만 언제나 만료기간이 긴 캐시를 사용할 수 만은 없습니다. 오랜 기간 변경되지 않아도 되는 데이터가 있는 반면, 짧은 변경 주기를 가지는 데이터도 있습니다. '캐시를 얼마나 오래 유지해야 하는가?'의 문제는 언제나 답이 없습니다. 데이터의 성격과 상황에 따라 알맞게 설정해야 할 것입니다.
 
@@ -458,18 +461,18 @@ export class HttpCacheInterceptor extends CacheInterceptor {
 `@CacheEvict()` 를 통해 캐시 무효화 키를 한개 이상 입력한 경우 해당 캐시를 무효화하고, 그렇지 않은 경우 기본적으로 엔드포인트에 해당하는 캐시를 무효화하도록 구성하였습니다.
 
 
-# 요약
+## 요약
 
 Nestjs 에서의 캐시처리에 대해 알아보았습니다. 캐시는 오래된 데이터가 될 가능성이 있으므로 무효화할 수 있어야 하고, 이를 각 서비스 로직에서 직접 처리할 수 있지만, Interceptor를 통해 AOP 방식으로 책임을 분리하는 작업을 함께 알아보았습니다. 
 
-# 더 이야기해 볼 거리
+## 더 이야기해 볼 거리
 
 - 인증 정보에 따른 응답에 대한 캐시처리
 - Nestjs + GraphQL 캐싱 방법
   - Interceptor와 GraphQL Resolver 함께 사용시 문제
   - 정규화된 캐시, 문서 캐시 등 캐싱 방식
 
-# 참조 문서
+## 참조 문서
 
 - https://docs.nestjs.com/
 - https://github.com/nestjs/nest
