@@ -3,7 +3,7 @@ module.exports = {
     title: "Hwasurr's Devlog",
     author: {
       name: 'hwasurr',
-      summary: 'Aws, CI/CD, DevOps, Web Fullstack 등에 관심이 많습니다.🚴‍♀️',
+      summary: 'Typescript, Web Fullstack, Aws, CI/CD, DevOps 등에 관심이 많습니다.🚴‍♀️',
     },
     description: '항상 어제보다 더 나은 내가 되기 위해 노력합니다.',
     siteUrl: 'https://hwasurr.io/',
@@ -18,6 +18,13 @@ module.exports = {
       options: {
         path: `${__dirname}/content/blog`,
         name: 'blog',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/content/about`,
+        name: 'about',
       },
     },
     {
@@ -58,7 +65,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-feed`,
+      resolve: 'gatsby-plugin-feed',
       options: {
         query: `
           {
@@ -74,17 +81,15 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.nodes.map(node => {
-                return Object.assign({}, node.frontmatter, {
-                  description: node.excerpt,
-                  date: node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + node.fields.slug,
-                  custom_elements: [{ "content:encoded": node.html }],
-                })
-              })
-            },
+            // eslint-disable-next-line max-len
+            serialize: ({ query: { site, allMarkdownRemark } }) => allMarkdownRemark.nodes.map((node) => ({
+              ...node.frontmatter,
+              description: node.excerpt,
+              date: node.frontmatter.date,
+              url: site.siteMetadata.siteUrl + node.fields.slug,
+              guid: site.siteMetadata.siteUrl + node.fields.slug,
+              custom_elements: [{ 'content:encoded': node.html }],
+            })),
             query: `
               {
                 allMarkdownRemark(
@@ -104,15 +109,15 @@ module.exports = {
                 }
               }
             `,
-            output: "/rss.xml",
+            output: '/rss.xml',
             title: "Your Site's RSS Feed",
             // optional configuration to insert feed reference in pages:
             // if `string` is used, it will be used to create RegExp and then test if pathname of
             // current page satisfied this regular expression;
             // if not provided or `undefined`, all pages will have feed reference inserted
-            match: "^/blog/",
+            match: '^/blog/',
             // optional configuration to specify external rss feed, such as feedburner
-            link: "https://feeds.feedburner.com/gatsby/blog",
+            link: 'https://feeds.feedburner.com/gatsby/blog',
           },
         ],
       },
@@ -136,8 +141,6 @@ module.exports = {
         pathToConfigModule: 'src/utils/typography',
       },
     },
-    'gatsby-plugin-typescript',
     'gatsby-plugin-sitemap', // 사이트맵
-
   ],
 };

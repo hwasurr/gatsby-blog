@@ -7,7 +7,7 @@ tags: [DevOps, CI/CD]
 
 ## 일단, CI/CD가 뭔데?
 
-CI/CD는 Continuous Integration(지속적 통합) / Continuous Delivery(지속적 전달) 의 줄임말이다. 
+CI/CD는 Continuous Integration(지속적 통합) / Continuous Delivery(지속적 전달) 의 줄임말이다.
 애플리케이션 개발단계를 자동화하여 애플리케이션을 보다 짧은 주기로 고객에게 제공하는 방법이다.
 
 새로 개발한 기능, 버그 수정점 등을 실제 배포 중인 서비스에 통합하기 위해서는 여러 과정이 필요하다. 소스코드를 테스트하고, 빌드하고, 컨테이너 화하여 통합적인 저장소에 전달 후 서비스 무 중단 배포 등의 과정이 그것이다. 이 모든 과정을 통상적으로 CI/CD라고 부른다.
@@ -30,7 +30,7 @@ private Repository에 대해서는 runner(워크플로우 구동 환경) 에 따
 
 ### Github Actions로 할 수 있는 일
 
-npm에  패키지를 배포, Docker Hub에 이미지를 배포, AWS 에 서비스를 배포, GCP 에 서비스를 배포 하는 작업 등을 Github에서 바로 할 수 있다. 기존의 익숙한 Git/GIthub 기능인 Pull Request, Push 등을 통해서 말이다.
+npm에 패키지를 배포, Docker Hub에 이미지를 배포, AWS 에 서비스를 배포, GCP 에 서비스를 배포 하는 작업 등을 Github에서 바로 할 수 있다. 기존의 익숙한 Git/GIthub 기능인 Pull Request, Push 등을 통해서 말이다.
 
 또한, 브랜치 별로 어떤 Action을 실행할 지 설정할 수 있어 각 개발 팀에 최적화 된 workflow를 만들어 낼 수 있다.
 
@@ -39,19 +39,19 @@ npm에  패키지를 배포, Docker Hub에 이미지를 배포, AWS 에 서비�
 ### Github Actions의 개념
 
 - Workflow
-자동화된 전체 프로세스를 나타낸 순서도. Github에게 YAML파일로 정의한 자동화 동작을 전달하면, Github Actions는 해당 파일을 기반으로 그대로 실행시킨다.
+  자동화된 전체 프로세스를 나타낸 순서도. Github에게 YAML파일로 정의한 자동화 동작을 전달하면, Github Actions는 해당 파일을 기반으로 그대로 실행시킨다.
 - Job
-그룹의 역할로, 단일 가상 환경을 제공한다.
+  그룹의 역할로, 단일 가상 환경을 제공한다.
 - Step
-Job안에서 순차적으로 실행되는 프로세스 단위로, 파일 시스템을 통해 서로 정보를 공유, 교환할 수 있다. step에서 명령을 내리거나, action을 실행할 수 있다.
+  Job안에서 순차적으로 실행되는 프로세스 단위로, 파일 시스템을 통해 서로 정보를 공유, 교환할 수 있다. step에서 명령을 내리거나, action을 실행할 수 있다.
 - Action
-타인들 또는 작성자에 의해서 미리 정의된 호출 매커니즘을 불러와 사용할 수 있다. 사용자가 직접 커스터마이징하거나, 어느 나/그룹/개발팀/제품/회사 등에서 정의한 action을 불러와 사용할 수 있다. Github Marketplace에서 공유되고, marketplace에 공유된 action은 yaml 파일에서 곧바로 사용할 수 있다.
+  타인들 또는 작성자에 의해서 미리 정의된 호출 매커니즘을 불러와 사용할 수 있다. 사용자가 직접 커스터마이징하거나, 어느 나/그룹/개발팀/제품/회사 등에서 정의한 action을 불러와 사용할 수 있다. Github Marketplace에서 공유되고, marketplace에 공유된 action은 yaml 파일에서 곧바로 사용할 수 있다.
 - Event
-workflow 실행 기준으로, cron과 같이 시간에 따라 작업을 실행하게 할 수도, git push / pull-request 등의 GIthub Repository 이벤트를 기준으로 실행하게 할 수도 있다.
+  workflow 실행 기준으로, cron과 같이 시간에 따라 작업을 실행하게 할 수도, git push / pull-request 등의 GIthub Repository 이벤트를 기준으로 실행하게 할 수도 있다.
 
 ### Workflow 생성하기
 
-yml 파일로 각 Action workflow를 설정할 수 있다. 해당 설정 파일은 레파지토리에 등록한 프로젝트 폴더의 최상위에 .github/workflow/*.yml 로 위치시킨다. 다음은 NodeJS 사용 시, 예제로 제공하는 workflow yml 파일이다.
+yml 파일로 각 Action workflow를 설정할 수 있다. 해당 설정 파일은 레파지토리에 등록한 프로젝트 폴더의 최상위에 .github/workflow/\*.yml 로 위치시킨다. 다음은 NodeJS 사용 시, 예제로 제공하는 workflow yml 파일이다.
 
 ```yaml
 name: Node CI
@@ -63,29 +63,29 @@ jobs: ## job 들을 명시
       matrix:
         node-version: [8.x, 10.x, 12.x]
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Npm Install, build and test
-      run: |
-        npm ci
-        npm run build --if-present
-        npm test
-      env:
-        CI: true
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Npm Install, build and test
+        run: |
+          npm ci
+          npm run build --if-present
+          npm test
+        env:
+          CI: true
 ```
 
 위에서부터 아래로 훑으며 설명하겠다.
 
 - 최 상위의 `name`
-해당 Workflow의 이름을 명시한다.
+  해당 Workflow의 이름을 명시한다.
 - `on`
-해당 Workflow의 Event를 명시한다. cron 문법으로 시간을 설정할 수도, push | pull-request 등 깃헙 이벤트를 구독할 수도, 실행할 브랜치를 제한할 수도 있다.  
-추가적으로, `paths`로 특정 패턴을 설정하여, 해당 패턴에 일치하는 파일이 변경되었을 때 워크플로가 실행되도록 설정할 수 있다.  
-`paths`와 반대로 `paths-ignore`로는 무시할 패턴을 설정할 수 있다. (paths 의 값의 앞에 `!`를 붙여 paths-ignore와 같이 사용할 수도 있다.)  
-하나의 깃헙 저장소에서 여러 프로젝트를 관리하는 상황이나, 특정 파일의 변경에 따라 빌드를 트리거 하거나 하지 않고 싶을 때 유용하게 사용할 수 있다.
+  해당 Workflow의 Event를 명시한다. cron 문법으로 시간을 설정할 수도, push | pull-request 등 깃헙 이벤트를 구독할 수도, 실행할 브랜치를 제한할 수도 있다.  
+  추가적으로, `paths`로 특정 패턴을 설정하여, 해당 패턴에 일치하는 파일이 변경되었을 때 워크플로가 실행되도록 설정할 수 있다.  
+  `paths`와 반대로 `paths-ignore`로는 무시할 패턴을 설정할 수 있다. (paths 의 값의 앞에 `!`를 붙여 paths-ignore와 같이 사용할 수도 있다.)  
+  하나의 깃헙 저장소에서 여러 프로젝트를 관리하는 상황이나, 특정 파일의 변경에 따라 빌드를 트리거 하거나 하지 않고 싶을 때 유용하게 사용할 수 있다.
 
 ```yaml
 # 10분마다 실행 workflow
@@ -112,34 +112,32 @@ on:
 ```
 
 - `jobs`
-jobs에 등록된 job들은 기본적으로 병렬적으로 실행된다. job_id를 키값으로 하여 생성할 수 있다.
+  jobs에 등록된 job들은 기본적으로 병렬적으로 실행된다. job_id를 키값으로 하여 생성할 수 있다.
 
 ```yaml
 jobs:
-  some-job-id:
-    ...
-  some-job-id-2:
-    ...
+  some-job-id: ...
+  some-job-id-2: ...
 ```
 
 - `jobs.<job_id>.runs-on`
-**Required,** 해당 job을 실행할 컴퓨팅 자원(runner)을 명시한다.
-ubuntu-latest, ubuntu-18.04, ubuntu-16.04, macos-latest, windows-latest 등이 들어갈 수 있다.
+  **Required,** 해당 job을 실행할 컴퓨팅 자원(runner)을 명시한다.
+  ubuntu-latest, ubuntu-18.04, ubuntu-16.04, macos-latest, windows-latest 등이 들어갈 수 있다.
 - `jobs.<job_id>.env`
-해당 job의 컴퓨팅 자원에 설정 할 환경변수를  key=value의 형태로 명시한다.
+  해당 job의 컴퓨팅 자원에 설정 할 환경변수를 key=value의 형태로 명시한다.
 - `jobs.<job_id>.strategy`
-strategy는 jobs가 여러 환경에서의 테스트/배포 등을 위해 build matrix를 설정할 수 있게 한다. 다른 환경(다른 Nodejs 버전) 들을 명시해 여러 환경에서의 같은 jobs를 동시에 실행할 수 있다.
+  strategy는 jobs가 여러 환경에서의 테스트/배포 등을 위해 build matrix를 설정할 수 있게 한다. 다른 환경(다른 Nodejs 버전) 들을 명시해 여러 환경에서의 같은 jobs를 동시에 실행할 수 있다.
 - `jobs.<job_id>.steps`
-job이 가질 수 있는 순차적인 동작 나열이다. 명령어를 실행하거나, setup하거나, 깃헙 코드를 checkout하거나, github marketplace에 있는 action을 가져와 실행하거나, 도커 이미지로 생성하거나, 도커 이미지를 배포하거나, aws/gcp 등에 서비스를 배포하는 작업 등을 설정할 수 있다.
-각각의 step은 job의 컴퓨팅 자원에서 독립적인 프로세스로 동작하고, job의 runner(컴퓨팅 자원)의 파일 시스템에 접근할 수 있다.
+  job이 가질 수 있는 순차적인 동작 나열이다. 명령어를 실행하거나, setup하거나, 깃헙 코드를 checkout하거나, github marketplace에 있는 action을 가져와 실행하거나, 도커 이미지로 생성하거나, 도커 이미지를 배포하거나, aws/gcp 등에 서비스를 배포하는 작업 등을 설정할 수 있다.
+  각각의 step은 job의 컴퓨팅 자원에서 독립적인 프로세스로 동작하고, job의 runner(컴퓨팅 자원)의 파일 시스템에 접근할 수 있다.
 - `jobs.<job_id>.steps.name`
-step의 이름을 명시한다. github actions 페이지에서 workflow구동 로그를 확인할 때 보여진다.
+  step의 이름을 명시한다. github actions 페이지에서 workflow구동 로그를 확인할 때 보여진다.
 - `jobs.<job_id>.steps.uses`
-해당 스텝에서 사용할 action을 선택한다. github marketplace에 선구자들이 올려 둔 많은 action들이 있다.
-공신력있는 기관에서 생성한 github에 의해 공식적으로 확인된 action들도 있다.
-github 에서는 action을 사용 시, version을 명시하여 사용하기를 강력히 추천한다.
-`{owner}/{repo}@{ref|version}` 의 형태를 지닌다.
-각 action 는 필수적으로 document가 필요하다. 사용하고자 하는 action이 있다면 해당 레파지토리를 확인해보면 사용 방법과 같은 내용을 적어두었을 것이다. 해당 방법들을 확인한 후 사용하기를 권장한다.
+  해당 스텝에서 사용할 action을 선택한다. github marketplace에 선구자들이 올려 둔 많은 action들이 있다.
+  공신력있는 기관에서 생성한 github에 의해 공식적으로 확인된 action들도 있다.
+  github 에서는 action을 사용 시, version을 명시하여 사용하기를 강력히 추천한다.
+  `{owner}/{repo}@{ref|version}` 의 형태를 지닌다.
+  각 action 는 필수적으로 document가 필요하다. 사용하고자 하는 action이 있다면 해당 레파지토리를 확인해보면 사용 방법과 같은 내용을 적어두었을 것이다. 해당 방법들을 확인한 후 사용하기를 권장한다.
 
 ```yaml
 jobs:
@@ -164,8 +162,8 @@ jobs:
 ```
 
 - `jobs.<job_id>.steps.run`
-job에 할당된 컴퓨팅자원의 shell을 이용하여 command line program을 구동한다.
-nodejs 프로젝트의 경우, 이 과정에 npm package의 scripts를 구동하는 경우가 가장 대표적일 것이다.
+  job에 할당된 컴퓨팅자원의 shell을 이용하여 command line program을 구동한다.
+  nodejs 프로젝트의 경우, 이 과정에 npm package의 scripts를 구동하는 경우가 가장 대표적일 것이다.
 
 ```yaml
 jobs:

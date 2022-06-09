@@ -8,11 +8,11 @@ tags: [AWS, 인프라, IaC]
 ## 개념
 
 - **IaC(Infrastructure as Code)**  
-물리적 하드웨어 구성이나 인터페이스 구성 도구가 아닌 기계가 읽을 수 있는 정의 파일들을 통한 컴퓨터 데이터 센터 관리 및 프로비저닝 과정이다.
+  물리적 하드웨어 구성이나 인터페이스 구성 도구가 아닌 기계가 읽을 수 있는 정의 파일들을 통한 컴퓨터 데이터 센터 관리 및 프로비저닝 과정이다.
 
 - **AWS CDK(Cloud Development Kit)**  
-AWS CDK는 클라우드 인프라를 코드로 정의하고 프로비저닝하는 소프트웨어 개발 프레임워크이다. 주요 AWS 서비스와 통합되어 AWS 리소스를 정의하는 고 수준의 객체 지향 추상화를 제공한다.  
-기존에 익숙한 프로그래밍 언어로 AWS 인프라를 예측 가능하고 효율적인 방식으로 정의, 제어 할 수 있어 개발 경험을 개선할 수 있다.
+  AWS CDK는 클라우드 인프라를 코드로 정의하고 프로비저닝하는 소프트웨어 개발 프레임워크이다. 주요 AWS 서비스와 통합되어 AWS 리소스를 정의하는 고 수준의 객체 지향 추상화를 제공한다.  
+  기존에 익숙한 프로그래밍 언어로 AWS 인프라를 예측 가능하고 효율적인 방식으로 정의, 제어 할 수 있어 개발 경험을 개선할 수 있다.
 
 ## AWS 리소스를 제어하는 방법
 
@@ -62,18 +62,18 @@ cdk --version
 stack에 env 프로퍼티에 region과 account를 명시하면, 해당 stack을 배포하는 과정에서 사용된다. ( AWS팀은 region과 account를 env를 통해 외부로 드러나지 않도록 하기를 권장한다.)
 
 ```tsx
-new MyStack(app, 'MyStack', {
-    env: {
-        region: 'REGION',
-        account: 'ACCOUNT'
-    }
-})
+new MyStack(app, "MyStack", {
+  env: {
+    region: "REGION",
+    account: "ACCOUNT",
+  },
+});
 ```
 
 ### 여러 환경에 따라 여러 스택 구현
 
 스택은 몇 개든지 만들 수 있다. 각 리전에 맞는 설정을 통해 리전 별로 다른 스택을 배포하는 것도 가능하다.  
-동일한 인프라 구성에 env 설정만 변경하여  동일한 인프라를 갖는 개발 환경, 테스트 환경, 프로덕션 환경을 구성할 수 있다.( AWS CDK팀은 하나의 CDK앱에서 프로덕션 스택을 필요에 따라 생성하고 배포 하기를 권장한다.)
+동일한 인프라 구성에 env 설정만 변경하여 동일한 인프라를 갖는 개발 환경, 테스트 환경, 프로덕션 환경을 구성할 수 있다.( AWS CDK팀은 하나의 CDK앱에서 프로덕션 스택을 필요에 따라 생성하고 배포 하기를 권장한다.)
 
 ```tsx
 new MyStack(app, 'Stack-One-W', { env : { account: 'ONE', region: 'us-west-2'}}
@@ -84,37 +84,38 @@ new MyStack(app, 'Stack-Two-E', { env : { account: 'TWO', region: 'us-east-1'}}
 
 ### 자격 증명과 리전을 명시하기
 
-AWS CDK CLI를 사용하기 위해서는 반드시 자격 증명과 리전을 명시해야 한다. `cdk` 명령의  `--profile` 옵션 에 명시 또는 환경 변수로 설정하는 등의 방법을 통해 리전과 자격 증명을 명시할 수 있다.
+AWS CDK CLI를 사용하기 위해서는 반드시 자격 증명과 리전을 명시해야 한다. `cdk` 명령의 `--profile` 옵션 에 명시 또는 환경 변수로 설정하는 등의 방법을 통해 리전과 자격 증명을 명시할 수 있다.
 
 - cdk 명령에 `—-profile <사용자 명>` 옵션을 통해 명시하기 (리눅스/Mac)
 
-    `~/.aws/config`에 다음과 같이 작성하여 test 유저를 정의한다.  
-    access_key_id 와 secret_access_key는 IAM 사용자를 생성한 이후, "보안 자격 증명" 에서 생성할 수 있다.
+  `~/.aws/config`에 다음과 같이 작성하여 test 유저를 정의한다.  
+   access_key_id 와 secret_access_key는 IAM 사용자를 생성한 이후, "보안 자격 증명" 에서 생성할 수 있다.
 
-    ```
-    [profile hwasurr]
-    aws_access_key_id=YOUR_ACCESSKEY
-    aws_secret_access_key=YOUR_SECRETACCESKEY
-    region=ap-northeast-2
-    ```
+  ```
+  [profile hwasurr]
+  aws_access_key_id=YOUR_ACCESSKEY
+  aws_secret_access_key=YOUR_SECRETACCESKEY
+  region=ap-northeast-2
+  ```
 
-    이후 다음과 같이 cdk 명령에 해당 프로필을 설정할 수 있다.
+  이후 다음과 같이 cdk 명령에 해당 프로필을 설정할 수 있다.
 
-    ```bash
-    cdk deploy --profile hwasurr
-    ```
+  ```bash
+  cdk deploy --profile hwasurr
+  ```
 
 - 환경 변수 사용하여 명시하기
-    - 액세스 키: `AWS_ACCESS_KEY_ID`
-    - 시크릿 액세스 키: `AWS_SECRET_ACCESS_KEY`
-    - 기본 리전: `AWS_DEFAULT_REGION`
 
-    ```bash
-    # Linux & Mac
-    export AWS_DEFAULT_REGION=ap-northeast-2
-    # Windows
-    set AWS_DEFAULT_REGION=ap-northeast-2
-    ```
+  - 액세스 키: `AWS_ACCESS_KEY_ID`
+  - 시크릿 액세스 키: `AWS_SECRET_ACCESS_KEY`
+  - 기본 리전: `AWS_DEFAULT_REGION`
+
+  ```bash
+  # Linux & Mac
+  export AWS_DEFAULT_REGION=ap-northeast-2
+  # Windows
+  set AWS_DEFAULT_REGION=ap-northeast-2
+  ```
 
 환경변수로 자격증명과 리전을 명시한 경우에는 cdk cli를 사용할 때, `--profile <사용자 명>` 으로
 
@@ -197,19 +198,18 @@ yarn add @aws-cdk/aws-s3
 Bucket 클래스로 추상홛 되어 있어, new 연산자로 Bucket 인스턴스를 생성하는 코드로 S3 버킷을 정의할 수 있다.
 
 ```tsx
-import * as core from '@aws-cdk/core';
-import * as s3 from '@aws-cdk/aws-s3';
+import * as core from "@aws-cdk/core";
+import * as s3 from "@aws-cdk/aws-s3";
 
 export class HelloCdkStack extends core.Stack {
-    constructor(scope: core.App, id: string, props?: core.StackProps) {
-        super(socpe, id, props);
+  constructor(scope: core.App, id: string, props?: core.StackProps) {
+    super(socpe, id, props);
 
-        new s3.Bucket(this, 'MyFirstBucket', {
-            versioned: true,
-            bucketName: 'someBucketName'
-        })
-
-    }
+    new s3.Bucket(this, "MyFirstBucket", {
+      versioned: true,
+      bucketName: "someBucketName",
+    });
+  }
 }
 ```
 
@@ -257,7 +257,7 @@ Resources:
 cdk deploy --profile <사용자 명>
 ```
 
-이 명령을 실행하면, CDK 코드를 AWS CloudFormation 템플릿으로 합성한 이후, CloudForation을 호출하여 AWS 계정에 배포한다.  코드가 인프라의 보안 상태를 변경하는 경우, 해당 변경되는 정보에 대해 보여주고, 스택이 배포되기 전에 승인을 요청한다.
+이 명령을 실행하면, CDK 코드를 AWS CloudFormation 템플릿으로 합성한 이후, CloudForation을 호출하여 AWS 계정에 배포한다. 코드가 인프라의 보안 상태를 변경하는 경우, 해당 변경되는 정보에 대해 보여주고, 스택이 배포되기 전에 승인을 요청한다.
 
 ### 마주한 IAM 권한 문제
 
@@ -285,7 +285,7 @@ cdk destroy
 위에서 설명했던 S3 버킷을 만들어 보는 예제로는 나의 상황에 맞는 인프라를 CDK 로 구축하기에는 부족할 수 있다.  
 [github.com/aws-samples/aws-cdk-examples](https://github.com/aws-samples/aws-cdk-examples) 에는 여러 많은 인프라 스택을 가정한 CDK 코드예제가 포함되어 있다. 자신의 배포 스택에 맞는 예제를 따라 진행해 보고, 자신의 상황에 맞게 구축할 수 있다.  
 [AWS CDK API Reference](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-construct-library.html) 에서 원하는 서비스에 대한 설명과 기본적인 예제를 확인해볼 수 있다.  
-혹여나 예제를 진행하고 과금이 될까 두렵다면 그럴 필요 없다. `cdk destroy` 명령어를 실행하는 것만으로 연습했던 인프라를 곧바로 삭제할 수 있으므로 가벼운 마음으로 예제를 따라해보아도 된다.(조심하는건 필수)  
+혹여나 예제를 진행하고 과금이 될까 두렵다면 그럴 필요 없다. `cdk destroy` 명령어를 실행하는 것만으로 연습했던 인프라를 곧바로 삭제할 수 있으므로 가벼운 마음으로 예제를 따라해보아도 된다.(조심하는건 필수)
 
 ## 끝으로
 

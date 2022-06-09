@@ -21,7 +21,7 @@ ctrl(command) + alt
 ### 동일 단어 다중 선택
 
 VScode 팁
-해당 단어 여러개 선택 -> 단어 앞에 커서를 두고 ctrl + d  (command + d)연타한다 -> 해당 단어와 동일한 단어가 선택 (편집됨) 
+해당 단어 여러개 선택 -> 단어 앞에 커서를 두고 ctrl + d (command + d)연타한다 -> 해당 단어와 동일한 단어가 선택 (편집됨)
 
 ### 나만의 스니펫
 
@@ -38,7 +38,7 @@ typescriptreact 선택
 
 vscode 팁
 리팩토링, import 미관리 등으로 import가 엉망이 되었을 때
-shift + option + o  => organize imports  => 매직
+shift + option + o => organize imports => 매직
 
 ### move to a new file
 

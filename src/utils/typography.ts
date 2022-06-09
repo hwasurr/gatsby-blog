@@ -9,11 +9,11 @@ Wordpress2016.overrideThemeStyles = () => ({
 
 delete Wordpress2016.googleFonts;
 const myFonts = [
-  'Merriweather', 'Georgia', '-apple-system',
+  'arial', 'Merriweather', 'Georgia', '-apple-system',
   'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol',
   'BlinkMacSystemFont', 'Helvetica Neue', 'AppleSDGothicNeoR', 'Malgun Gothic', 'Nanum Gothic',
   'Noto Sans KR', 'Noto Sans CJK KR',
-  'arial', '돋움', 'Dotum',
+  '돋움', 'Dotum',
   'Tahoma', 'Geneva', 'sans-serif'
 ];
 const typography = new Typography({
