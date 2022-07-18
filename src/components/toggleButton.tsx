@@ -32,7 +32,7 @@ export default function ToggleButton(): JSX.Element {
 
   return (
     <div style={{
-      display: 'flex', alignItems: 'center', marginLeft: 8, marginBottom: 8
+      display: 'flex', alignItems: 'center', marginLeft: 8, marginBottom: 16
     }}
     >
       <input className="toggle" type="checkbox" id="switch" checked={isDarkTheme} onClick={handleThemeToggle} />

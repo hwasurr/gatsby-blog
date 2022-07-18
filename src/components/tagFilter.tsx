@@ -45,6 +45,7 @@ export default function TagFilter({
           display: 'block',
           whiteSpace: 'nowrap',
           padding: 8,
+          // marginRight: '-24px',
         }}
         onMouseDown={(e): void => {
           setStartX(e.pageX - e.currentTarget.offsetLeft);

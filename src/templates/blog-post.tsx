@@ -91,14 +91,15 @@ function BlogPostTemplate({ data, pageContext, location }): JSX.Element {
       <nav>
         <ul
           style={{
+            margin: 0,
             display: 'flex',
             flexWrap: 'wrap',
+            gap: 2,
             justifyContent: 'space-between',
             listStyle: 'none',
-            padding: 0,
           }}
         >
-          <li>
+          <li className="navigation-link-wrapper">
             {previous && (
               <Link to={previous.fields.slug} rel="prev" className="navigation-link">
                 ←
@@ -107,7 +108,7 @@ function BlogPostTemplate({ data, pageContext, location }): JSX.Element {
               </Link>
             )}
           </li>
-          <li>
+          <li className="navigation-link-wrapper">
             {next && (
               <Link to={next.fields.slug} rel="next" className="navigation-link">
                 {next.frontmatter.title}
