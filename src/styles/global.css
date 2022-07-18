@@ -74,7 +74,7 @@ code[class*="language-"], pre[class*="language-"] {
     margin-right: 4px;
 }
 .navigation-link-wrapper {
-    padding: 6px 0px 2px;
+    padding: 6px 0px 6px;
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
