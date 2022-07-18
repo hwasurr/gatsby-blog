@@ -88,7 +88,7 @@ function BlogPostTemplate({ data, pageContext, location }): JSX.Element {
         </footer>
       </article>
 
-      <nav>
+      <nav style={{ marginTop: 8 }}>
         <ul
           style={{
             margin: 0,
