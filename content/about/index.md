@@ -4,8 +4,6 @@ date: "2022-03-06T16:17:03.284Z"
 lang: ko
 ---
 
-
-
 ## Skills
 
 - Nodejs/Typescript  
@@ -24,6 +22,8 @@ lang: ko
 - Git/Github  
 - Python scripting  
 - Familiar with Agile(Sprint, Kanban)  
+
+<!-- 현재 관심 있는 것 -->
 
 <!-- ## 경험 -->
 

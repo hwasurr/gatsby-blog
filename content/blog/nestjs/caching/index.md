@@ -3,6 +3,10 @@ title: Nestjs REST 애플리케이션의 캐시 처리와 캐시 무효화
 description: Nestjs REST 애플리케이션에서 캐시에 대한 전반적인 내용을 다룹니다. 캐시를 등록하는 방법과 캐시를 무효화하는 방법에 대해서 살펴보며 더 효율적인 방식을 찾아나갑니다. 
 date: "2022-06-09"
 tags: [Nestjs, API, REST]
+image:
+  src: https://image-hwasurr.s3.ap-northeast-2.amazonaws.com/IMG_7245.jpg
+  author: hwasurr
+  description: 북면 생태공원, 창원시
 ---
 
 ## 주요 내용

@@ -20,6 +20,34 @@ function BlogPostTemplate({ data, pageContext, location }): JSX.Element {
         description={post.frontmatter.description || post.excerpt}
       />
       <article>
+        {post.frontmatter.image && (
+          <div style={{ textAlign: 'center' }}>
+            <div style={{
+              borderRadius: '16px',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              minHeight: 300,
+              backgroundImage: `url(${post.frontmatter.image.src})`,
+
+            }}
+            />
+            <span style={{
+              ...scale(-1 / 2),
+              marginBottom: 0,
+              fontStyle: 'italic',
+            }}
+            >
+              {post.frontmatter.image.description}
+              {' '}
+              (Pictured by
+              {' '}
+              {post.frontmatter.image.author}
+              )
+            </span>
+
+          </div>
+        )}
         <header>
           <h1
             style={{
@@ -144,6 +172,11 @@ export const pageQuery = graphql`
         date(formatString: "YYYY. MM. DD")
         description
         tags
+        image {
+          src
+          author
+          description
+        }
       }
       tableOfContents
       timeToRead
