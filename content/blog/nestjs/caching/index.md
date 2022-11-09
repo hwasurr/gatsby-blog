@@ -4,7 +4,7 @@ description: Nestjs REST 애플리케이션에서 캐시에 대한 전반적인 
 date: "2022-06-09"
 tags: [Nestjs, API, REST]
 image:
-  src: https://image-hwasurr.s3.ap-northeast-2.amazonaws.com/IMG_7245.jpg
+  src: https://hwasurrimages.s3.ap-northeast-2.amazonaws.com/IMG_7245_compressed.jpg
   author: hwasurr
   description: 북면 생태공원, 창원시
 ---
