@@ -7,7 +7,8 @@ import ToggleButton from '../components/toggleButton';
 import Utterances from '../components/utterances';
 import { rhythm, scale } from '../utils/typography';
 
-function BlogPostTemplate({ data, pageContext, location }): JSX.Element {
+// gatsby-node.js 에서 createPage를 통해 생성되는 페이지에 사용됨.
+function BlogPostTemplate({ data, pageContext, location }: any): JSX.Element {
   const post = data.markdownRemark;
   const siteTitle = data.site.siteMetadata.title;
   const { previous, next } = pageContext;
@@ -156,8 +157,7 @@ function BlogPostTemplate({ data, pageContext, location }): JSX.Element {
 
 export default BlogPostTemplate;
 
-export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+export const pageQuery = graphql`query BlogPostBySlug($slug: String!) {
     site {
       siteMetadata {
         title

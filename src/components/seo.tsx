@@ -22,8 +22,7 @@ export default function SEO({
   title
 }: SEOProps): JSX.Element {
   const { site } = useStaticQuery(
-    graphql`
-      query {
+    graphql`query SEO {
         site {
           siteMetadata {
             title
@@ -34,7 +33,7 @@ export default function SEO({
           }
         }
       }
-    `
+`
   );
 
   const metaDescription = description || site.siteMetadata.description;

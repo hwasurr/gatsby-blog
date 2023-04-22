@@ -1,9 +1,12 @@
-import React from 'react';
-import { Link } from 'gatsby';
-
+import { Link, PageProps } from 'gatsby';
+import React, { PropsWithChildren } from 'react';
 import { rhythm, scale } from '../utils/typography';
 
-function Layout({ location, title, children }) {
+interface LayoutProps extends PropsWithChildren {
+  title: string
+  location: PageProps['location']
+}
+function Layout({ location, title, children }: LayoutProps) {
   const rootPath = `${__PATH_PREFIX__}/`;
   let header;
 
@@ -18,9 +21,7 @@ function Layout({ location, title, children }) {
       >
         <Link
           className="title"
-          style={{
-            boxShadow: 'none',
-          }}
+          style={{ boxShadow: 'none', }}
           to="/"
         >
           {title}
@@ -30,16 +31,11 @@ function Layout({ location, title, children }) {
   } else {
     header = (
       <h3
-        style={{
-          fontFamily: 'Montserrat, sans-serif',
-          marginTop: 0,
-        }}
+        style={{ fontFamily: 'Montserrat, sans-serif', marginTop: 0, }}
       >
         <Link
           className="title"
-          style={{
-            boxShadow: 'none',
-          }}
+          style={{ boxShadow: 'none', }}
           to="/"
         >
           {title}
@@ -62,6 +58,7 @@ function Layout({ location, title, children }) {
         <small>
           ©
           {' '}
+          {`${2020}-`}
           {new Date().getFullYear()}
           , Built with
           {' '}

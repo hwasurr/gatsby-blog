@@ -1,4 +1,6 @@
 import Typography from 'typography';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 import Wordpress2016 from 'typography-theme-wordpress-2016';
 
 Wordpress2016.overrideThemeStyles = () => ({
