@@ -118,19 +118,19 @@ services:
 
 레디스 클러스터는 현재 네트워크 주소 변환(Network Address Transport, NAT)된 환경 또는 IP주소 / TCP 포트를 재맵핑하는 환경을 지원하지 않습니다.  
 도커는 컨테이너 내부에서 실행되는 프로그램을 특정 외부 포트로 노출할 수 있는 “포트 매핑” 기술을 사용하고 있으며, 이는 여러 컨테이너가 동일한 포트를 가지는 상황을 해결하는 데에 유용하게 사용되고 있습니다.  
-도커 상에서 실행하는 레디스 컨테이너들이 레디스 클러스터에 호환하도록 하기 위해서는 “host” 네트워크 모드를 사용하는 것을 필요로 합니다. host 네트워크모드는 포트 매핑을 통해 주소를 변환하지 않고, 컨테이너가 호스트 네트워크를 곧바로 사용하도록 합니다.
+도커 상에서 실행하는 레디스 컨테이너들이 레디스 클러스터에 호환하도록 하기 위해서는 “host” 네트워크 모드를 사용하는 것을 필요로 합니다. host 네트워크모드는 포트 매핑을 통해 주소를 변환하지 않고, 컨테이너가 호스트 네트워크를 곧바로 사용하도록 합니다. ([참고링크](https://redis.io/docs/management/scaling/#create-a-redis-cluster:~:text=Redis%20Cluster%20and,for%20more%20information.))
 
-하지만 리눅스 호스트 환경이 아닌 경우에는 host 네트워크 모드는 지원되지 않습니다. 즉, Docker Desktop for Mac, Docker Desktop for Windows 의 경우 올바르게 동작하지 않습니다.
+그러나 우리는 host 모드를 사용하지 않고, 각 레디스 노드에 대한 포트가 한번에 매핑된 하나의 **동일한 네트워크를 각 노드가 공유**하도록 구성하는 방식으로 구성하였습니다. ([참고링크1](https://docs.docker.com/engine/reference/run/#network-container), [참고링크2](https://stackoverflow.com/questions/52688218/can-docker-compose-share-an-ip-between-services-with-discrete-ports))
 
-우리는 host 모드를 켜지 않고, 각 레디스 노드에 대한 포트가 한번에 매핑된 하나의 **동일한 네트워크를 각 노드가 공유**하도록 구성하였습니다. 이 방법으로 Docker Desktop for Mac, Docker Desktop for Windows 를 사용하는 경우에도 레디스 클러스터를 올바르게 구성할 수 있었습니다.
-
-redis-cluster-entry 서비스는 클러스터 모드를 활성화 하는 작업을 진행하는 컨테이너를 구성합니다. 다른 레디스 노드들과 동일하게 service:redis-cluster 네트워크상에서 동작하며, `redis-cli —cluster create` 명령으로 클러스터를 시작하도록 합니다. 이 서비스는 세개의 레디스 노드 컨테이너가 모두 실행된 이후에 작업이 진행되어야 하므로, `depends_on` 필드에 각 의존 컨테이너를 명시하도록 합니다.
+redis-cluster-entry 서비스는 클러스터 모드를 활성화 하는 작업을 진행하는 컨테이너를 구성합니다. 다른 레디스 노드들과 동일하게 service:redis-cluster 네트워크상에서 동작하며, `redis-cli —-cluster create` 명령으로 클러스터를 시작하도록 합니다. 이 서비스는 세개의 레디스 노드 컨테이너가 모두 실행된 이후에 작업이 진행되어야 하므로, `depends_on` 필드에 각 의존 컨테이너를 명시하도록 합니다.
 
 이제 마스터 노드가 3개인 레디스 클러스터 환경이 갖추어 졌습니다.
 
 ```bash
 # CLI 접근시 -c 옵션을 통해 클러스터 지원을 활성화 하도록 합니다.
 docker exec -it redis-test -c
+# 올바르게 CLI에 접근되지 않는다면
+docker exec -it redis-test redis-cli -c
 ```
 
 위 명령어로 레디스 노드 컨테이너에 접속해 `CLUSTER INFO` 와 `CLUSTER NODES` 명령을 통해 클러스터 설정이 올바르게 되었는 지 확인해봅니다.
@@ -140,3 +140,9 @@ docker exec -it redis-test -c
 `SET`, `GET` 명령을 통해 데이터를 입력했을 때 다음과 같이 자동으로 분산 저장되고, 분산 저장된 데이터를 올바르게 불러오는 것을 확인할 수 있습니다.
 
 ![레디스 클러스터 커맨드 결과](redis-cluster-command.png)
+
+## 참고문서
+
+- https://redis.io/docs/management/scaling/#create-a-redis-cluster
+- https://docs.docker.com/engine/reference/run/#network-container
+- https://stackoverflow.com/questions/52688218/can-docker-compose-share-an-ip-between-services-with-discrete-ports
